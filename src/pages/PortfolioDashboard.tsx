@@ -28,15 +28,19 @@ const teamCapacity = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "#fff",
-    border: "1px solid hsl(220, 14%, 88%)",
-    borderRadius: "6px",
-    fontSize: "12px",
-    fontFamily: "'IBM Plex Mono', monospace",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+    background: "hsl(220, 18%, 10%)",
+    border: "1px solid hsl(140, 20%, 18%)",
+    borderRadius: "4px",
+    fontSize: "11px",
+    fontFamily: "'JetBrains Mono', monospace",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+    color: "hsl(140, 60%, 80%)",
   },
-  labelStyle: { color: "hsl(220, 25%, 12%)" },
+  labelStyle: { color: "hsl(140, 60%, 80%)" },
 };
+
+const axisStyle = { fill: "hsl(200, 10%, 48%)", fontSize: 10, fontFamily: "'JetBrains Mono', monospace" };
+const gridColor = "hsl(140, 15%, 14%)";
 
 const PortfolioDashboard = () => {
   return (
@@ -58,10 +62,10 @@ const PortfolioDashboard = () => {
         <ChartPanel title="Engineering Health Radar" subtitle="Composite scores across 6 dimensions">
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData}>
-              <PolarGrid stroke="hsl(220, 14%, 88%)" />
-              <PolarAngleAxis dataKey="metric" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
-              <PolarRadiusAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 10 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="hsl(215, 60%, 42%)" fill="hsl(215, 60%, 42%, 0.12)" strokeWidth={2} />
+              <PolarGrid stroke={gridColor} />
+              <PolarAngleAxis dataKey="metric" tick={{ ...axisStyle, fontSize: 10 }} />
+              <PolarRadiusAxis tick={{ ...axisStyle, fontSize: 9 }} domain={[0, 100]} />
+              <Radar name="Score" dataKey="score" stroke="hsl(140, 70%, 45%)" fill="hsl(140, 70%, 45%, 0.12)" strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -69,12 +73,12 @@ const PortfolioDashboard = () => {
         <ChartPanel title="Team Capacity vs Utilization" subtitle="Current sprint allocation">
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={teamCapacity} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
-              <XAxis type="number" domain={[0, 100]} tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
-              <YAxis dataKey="team" type="category" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} width={60} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis type="number" domain={[0, 100]} tick={axisStyle} />
+              <YAxis dataKey="team" type="category" tick={axisStyle} width={60} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="capacity" fill="hsl(220, 14%, 85%)" radius={[0, 3, 3, 0]} />
-              <Bar dataKey="utilization" fill="hsl(215, 60%, 42%)" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="capacity" fill="hsl(200, 10%, 25%)" radius={[0, 2, 2, 0]} />
+              <Bar dataKey="utilization" fill="hsl(140, 70%, 45%)" radius={[0, 2, 2, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -89,14 +93,14 @@ const PortfolioDashboard = () => {
             { from: "Search Platform", to: "Platform Core", type: "Dependency", status: "at-risk" as const, desc: "Index rebuild API" },
             { from: "Admin Portal", to: "Auth Service", type: "Blocker", status: "on-track" as const, desc: "SSO integration" },
           ].map((dep, i) => (
-            <div key={i} className="flex items-center justify-between rounded-md bg-secondary/30 px-4 py-3">
+            <div key={i} className="flex items-center justify-between rounded bg-secondary/50 border border-border px-4 py-3">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs text-primary">{dep.from}</span>
-                <span className="text-muted-foreground text-xs">→</span>
+                <span className="text-muted-foreground text-xs font-mono">→</span>
                 <span className="font-mono text-xs text-foreground">{dep.to}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-xs text-muted-foreground">{dep.desc}</span>
+                <span className="text-[10px] font-mono text-muted-foreground">{dep.desc}</span>
                 <StatusBadge status={dep.status} label={dep.type} />
               </div>
             </div>
