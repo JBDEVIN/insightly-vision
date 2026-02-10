@@ -31,7 +31,7 @@ const tt = {
     background: "hsl(220, 18%, 10%)",
     border: "1px solid hsl(220, 15%, 22%)",
     borderRadius: "2px",
-    fontSize: "10px",
+    fontSize: "12px",
     fontFamily: "'JetBrains Mono', monospace",
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
@@ -39,7 +39,7 @@ const tt = {
   labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 9, fontFamily: "'JetBrains Mono', monospace" };
+const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
 const gc = "hsl(220, 15%, 16%)";
 
 const PortfolioDashboard = () => {
@@ -59,8 +59,8 @@ const PortfolioDashboard = () => {
           <ResponsiveContainer width="100%" height={260}>
             <RadarChart data={radarData}>
               <PolarGrid stroke={gc} />
-              <PolarAngleAxis dataKey="metric" tick={{ ...ax, fontSize: 9 }} />
-              <PolarRadiusAxis tick={{ ...ax, fontSize: 8 }} domain={[0, 100]} />
+              <PolarAngleAxis dataKey="metric" tick={{ ...ax, fontSize: 11 }} />
+              <PolarRadiusAxis tick={{ ...ax, fontSize: 10 }} domain={[0, 100]} />
               <Radar name="Score" dataKey="score" stroke="hsl(35, 100%, 50%)" fill="hsl(35, 100%, 50%)" fillOpacity={0.12} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
@@ -90,12 +90,12 @@ const PortfolioDashboard = () => {
           ].map((dep, i) => (
             <div key={i} className="flex items-center justify-between border border-border px-3 py-2 hover:border-primary/30 transition-colors">
               <div className="flex items-center gap-2">
-                <span className="font-mono text-[10px] text-card-foreground">{dep.from}</span>
-                <span className="text-primary text-[10px]">→</span>
-                <span className="font-mono text-[10px] text-card-foreground">{dep.to}</span>
+                <span className="font-mono text-xs text-card-foreground">{dep.from}</span>
+                <span className="text-primary text-xs">→</span>
+                <span className="font-mono text-xs text-card-foreground">{dep.to}</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="text-[9px] font-mono text-muted-foreground">{dep.desc}</span>
+                <span className="text-[11px] font-mono text-muted-foreground">{dep.desc}</span>
                 <StatusBadge status={dep.status} label={dep.type} />
               </div>
             </div>

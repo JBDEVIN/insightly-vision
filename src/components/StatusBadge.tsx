@@ -19,7 +19,7 @@ const defaultLabels = {
 
 const StatusBadge = ({ status, label }: StatusBadgeProps) => {
   return (
-    <span className={`inline-flex items-center gap-1 border px-1.5 py-0.5 text-[8px] font-mono font-bold tracking-widest uppercase ${styles[status]}`}>
+    <span className={`inline-flex items-center gap-1 border px-1.5 py-0.5 text-[10px] font-mono font-bold tracking-widest uppercase ${styles[status]}`}>
       <span className="inline-block h-1.5 w-1.5 rounded-full bg-current animate-pulse-glow" />
       {label || defaultLabels[status]}
     </span>

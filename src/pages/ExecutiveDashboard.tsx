@@ -45,7 +45,7 @@ const tt = {
     background: "hsl(220, 18%, 10%)",
     border: "1px solid hsl(220, 15%, 22%)",
     borderRadius: "2px",
-    fontSize: "10px",
+    fontSize: "12px",
     fontFamily: "'JetBrains Mono', monospace",
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
@@ -53,7 +53,7 @@ const tt = {
   labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 9, fontFamily: "'JetBrains Mono', monospace" };
+const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
 const gc = "hsl(220, 15%, 16%)";
 
 const ExecutiveDashboard = () => {
@@ -97,7 +97,7 @@ const ExecutiveDashboard = () => {
           </div>
           <div className="flex justify-center gap-3 mt-1">
             {healthDistribution.map((item) => (
-              <div key={item.name} className="flex items-center gap-1 text-[9px] font-mono text-muted-foreground">
+              <div key={item.name} className="flex items-center gap-1 text-[11px] font-mono text-muted-foreground">
                 <span className="h-2 w-2" style={{ background: item.color }} />
                 {item.name} ({item.value})
               </div>
@@ -136,14 +136,14 @@ const ExecutiveDashboard = () => {
 
       <ChartPanel title="Project Status" subtitle="All 10 active projects">
         <div className="overflow-x-auto">
-          <table className="w-full text-[11px] font-mono">
+          <table className="w-full text-sm font-mono">
             <thead>
               <tr className="border-b border-border text-left">
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider">Project</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider">Status</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider text-right">Vel.</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider text-right">Lead</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider text-right">Qual.</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider">Project</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider">Status</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider text-right">Vel.</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider text-right">Lead</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider text-right">Qual.</th>
               </tr>
             </thead>
             <tbody>

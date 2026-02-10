@@ -40,7 +40,7 @@ const tt = {
     background: "hsl(220, 18%, 10%)",
     border: "1px solid hsl(220, 15%, 22%)",
     borderRadius: "2px",
-    fontSize: "10px",
+    fontSize: "12px",
     fontFamily: "'JetBrains Mono', monospace",
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
@@ -48,7 +48,7 @@ const tt = {
   labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 9, fontFamily: "'JetBrains Mono', monospace" };
+const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
 const gc = "hsl(220, 15%, 16%)";
 
 const TeamDashboard = () => {
@@ -70,7 +70,7 @@ const TeamDashboard = () => {
   return (
     <DashboardLayout>
       <div className="mb-1">
-        <Link to={`/product/${product.id}`} className="inline-flex items-center gap-1 text-[10px] font-mono text-muted-foreground hover:text-primary transition-colors">
+        <Link to={`/product/${product.id}`} className="inline-flex items-center gap-1 text-xs font-mono text-muted-foreground hover:text-primary transition-colors">
           <ArrowLeft className="h-3 w-3" />
           {product.name}
         </Link>
@@ -114,15 +114,15 @@ const TeamDashboard = () => {
 
       <ChartPanel title="Contributions" subtitle="Sprint activity per member">
         <div className="overflow-x-auto">
-          <table className="w-full text-[11px] font-mono">
+          <table className="w-full text-sm font-mono">
             <thead>
               <tr className="border-b border-border text-left">
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider">Member</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider">Status</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider text-right">PRs</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider text-right">Reviews</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider text-right">Commits</th>
-                <th className="py-2 px-2 text-[8px] text-muted-foreground uppercase tracking-wider">Activity</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider">Member</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider">Status</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider text-right">PRs</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider text-right">Reviews</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider text-right">Commits</th>
+                <th className="py-2 px-2 text-[10px] text-muted-foreground uppercase tracking-wider">Activity</th>
               </tr>
             </thead>
             <tbody>
@@ -130,7 +130,7 @@ const TeamDashboard = () => {
                 <tr key={member.name} className="border-b border-border/50 hover:bg-accent/50 transition-colors">
                   <td className="py-1.5 px-2">
                     <div className="flex items-center gap-1.5">
-                      <div className="h-5 w-5 bg-secondary flex items-center justify-center text-[9px] font-bold text-primary">
+                      <div className="h-6 w-6 bg-secondary flex items-center justify-center text-[11px] font-bold text-primary">
                         {member.name[0]}
                       </div>
                       <span className="text-card-foreground">{member.name}</span>
