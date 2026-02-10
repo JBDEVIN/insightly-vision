@@ -45,15 +45,15 @@ const tt = {
     background: "hsl(220, 18%, 10%)",
     border: "1px solid hsl(220, 15%, 22%)",
     borderRadius: "2px",
-    fontSize: "12px",
+    fontSize: "14px",
     fontFamily: "'JetBrains Mono', monospace",
-    color: "hsl(40, 15%, 80%)",
+    color: "hsl(40, 15%, 88%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
   },
   labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
+const ax = { fill: "hsl(220, 12%, 62%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
 const gc = "hsl(220, 15%, 16%)";
 
 const ExecutiveDashboard = () => {
