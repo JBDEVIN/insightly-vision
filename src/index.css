@@ -44,13 +44,13 @@
     --radius: 2px;
 
     --sidebar-background: 200 20% 82%;
-    --sidebar-foreground: 200 10% 35%;
-    --sidebar-primary: 174 65% 35%;
+    --sidebar-foreground: 200 15% 15%;
+    --sidebar-primary: 174 65% 30%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 200 12% 78%;
-    --sidebar-accent-foreground: 200 15% 12%;
-    --sidebar-border: 200 14% 75%;
-    --sidebar-ring: 174 65% 40%;
+    --sidebar-accent-foreground: 200 15% 10%;
+    --sidebar-border: 200 14% 72%;
+    --sidebar-ring: 174 65% 35%;
 
     --chart-1: 174 65% 40%;
     --chart-2: 160 60% 38%;

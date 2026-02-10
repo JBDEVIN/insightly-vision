@@ -59,14 +59,14 @@ export function DashboardSidebar() {
           </p>
         )}
 
-        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
+        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-colors ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
           <LayoutDashboard className="h-5 w-5 shrink-0" />
           {!collapsed && <span className="truncate">L1 EXEC</span>}
         </NavLink>
 
         {!collapsed ? (
           <div>
-            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
+            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-colors ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
               <Layers className="h-5 w-5 shrink-0" />
               <span className="flex-1 text-left truncate">L2 PRODUCT</span>
               <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${productsOpen ? "" : "-rotate-90"}`} />
@@ -82,7 +82,7 @@ export function DashboardSidebar() {
                   return (
                     <div key={product.id}>
                       <div className="flex items-center">
-                        <Link to={productPath} className={`flex-1 block px-2 py-1 text-sm font-mono tracking-wide transition-colors truncate ${isProductActive ? "text-sidebar-primary" : "text-sidebar-foreground/70 hover:text-sidebar-primary"}`}>
+                        <Link to={productPath} className={`flex-1 block px-2 py-1 text-sm font-mono font-medium tracking-wide transition-colors truncate ${isProductActive ? "text-sidebar-primary" : "text-sidebar-foreground/80 hover:text-sidebar-primary"}`}>
                           {product.name}
                         </Link>
                         {product.teams.length > 0 && (
@@ -98,7 +98,7 @@ export function DashboardSidebar() {
                             const teamPath = `/product/${product.id}/team/${team.id}`;
                             const isTeamActive = location.pathname === teamPath;
                             return (
-                              <Link key={team.id} to={teamPath} className={`flex items-center gap-1.5 px-1.5 py-1 text-xs font-mono tracking-wide transition-colors ${isTeamActive ? "text-sidebar-primary" : "text-sidebar-foreground/60 hover:text-sidebar-primary"}`}>
+                              <Link key={team.id} to={teamPath} className={`flex items-center gap-1.5 px-1.5 py-1 text-xs font-mono tracking-wide transition-colors ${isTeamActive ? "text-sidebar-primary font-medium" : "text-sidebar-foreground/65 hover:text-sidebar-primary"}`}>
                                 <Users className="h-3.5 w-3.5 shrink-0" />
                                 <span className="truncate">{team.name}</span>
                               </Link>
