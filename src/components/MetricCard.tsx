@@ -37,18 +37,18 @@ const MetricCard = ({ title, value, subtitle, trend, icon, status = "neutral" }:
     <div className={`glass-card card-hover border-l-2 ${statusStyles[status]} p-4`}>
       <div className="flex items-start justify-between">
         <div className="space-y-1">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+          <p className="text-[9px] font-mono font-medium text-muted-foreground uppercase tracking-[0.15em]">
             {title}
           </p>
           <p className="text-2xl font-bold font-mono metric-glow tracking-tight">
             {value}
           </p>
           {subtitle && (
-            <p className="text-[11px] text-muted-foreground">{subtitle}</p>
+            <p className="text-[10px] font-mono text-muted-foreground">{subtitle}</p>
           )}
         </div>
         {icon && (
-          <div className="rounded-md bg-secondary p-2 text-muted-foreground">
+          <div className="rounded bg-primary/10 border border-primary/20 p-2 text-primary">
             {icon}
           </div>
         )}
@@ -60,7 +60,7 @@ const MetricCard = ({ title, value, subtitle, trend, icon, status = "neutral" }:
             {trend.value > 0 ? "+" : ""}
             {trend.value}%
           </span>
-          <span className="text-muted-foreground">{trend.label}</span>
+          <span className="text-muted-foreground font-mono text-[10px]">{trend.label}</span>
         </div>
       )}
     </div>

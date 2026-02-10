@@ -35,15 +35,19 @@ const dailyFlow = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "#fff",
-    border: "1px solid hsl(220, 14%, 88%)",
-    borderRadius: "6px",
-    fontSize: "12px",
-    fontFamily: "'IBM Plex Mono', monospace",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+    background: "hsl(220, 18%, 10%)",
+    border: "1px solid hsl(140, 20%, 18%)",
+    borderRadius: "4px",
+    fontSize: "11px",
+    fontFamily: "'JetBrains Mono', monospace",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+    color: "hsl(140, 60%, 80%)",
   },
-  labelStyle: { color: "hsl(220, 25%, 12%)" },
+  labelStyle: { color: "hsl(140, 60%, 80%)" },
 };
+
+const axisStyle = { fill: "hsl(200, 10%, 48%)", fontSize: 10, fontFamily: "'JetBrains Mono', monospace" };
+const gridColor = "hsl(140, 15%, 14%)";
 
 const TeamDashboard = () => {
   return (
@@ -65,11 +69,11 @@ const TeamDashboard = () => {
         <ChartPanel title="PR Age Distribution" subtitle="Time from open to merge">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={prAgeData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
-              <XAxis dataKey="name" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis dataKey="name" tick={axisStyle} />
+              <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="count" fill="hsl(215, 60%, 42%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="count" fill="hsl(140, 70%, 45%)" radius={[2, 2, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -77,13 +81,13 @@ const TeamDashboard = () => {
         <ChartPanel title="Daily Flow Metrics" subtitle="Work item state transitions this week">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={dailyFlow}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
-              <XAxis dataKey="day" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis dataKey="day" tick={axisStyle} />
+              <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="inProgress" stackId="a" fill="hsl(215, 60%, 42%)" />
-              <Bar dataKey="inReview" stackId="a" fill="hsl(38, 80%, 48%)" />
-              <Bar dataKey="done" stackId="a" fill="hsl(152, 55%, 38%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="inProgress" stackId="a" fill="hsl(200, 80%, 55%)" />
+              <Bar dataKey="inReview" stackId="a" fill="hsl(38, 90%, 50%)" />
+              <Bar dataKey="done" stackId="a" fill="hsl(140, 70%, 45%)" radius={[2, 2, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -92,32 +96,32 @@ const TeamDashboard = () => {
       {/* Team Members Detail */}
       <ChartPanel title="Individual Contributions" subtitle="Current sprint activity per team member">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm font-mono">
             <thead>
               <tr className="border-b border-border text-left">
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Member</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Status</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">PRs Merged</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Reviews</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Commits</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Activity</th>
+                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider">Member</th>
+                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider">Status</th>
+                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider text-right">PRs Merged</th>
+                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider text-right">Reviews</th>
+                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider text-right">Commits</th>
+                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider">Activity</th>
               </tr>
             </thead>
             <tbody>
               {memberData.map((member) => (
-                <tr key={member.name} className="border-b border-border/50 hover:bg-secondary/30 transition-colors">
+                <tr key={member.name} className="border-b border-border/50 hover:bg-primary/5 transition-colors">
                   <td className="py-2.5 px-3">
                     <div className="flex items-center gap-2">
-                      <div className="h-7 w-7 rounded-full bg-accent flex items-center justify-center text-xs font-mono text-accent-foreground">
+                      <div className="h-7 w-7 rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-[10px] font-mono text-primary">
                         {member.name[0]}
                       </div>
-                      <span className="font-medium">{member.name}</span>
+                      <span className="font-medium text-xs text-foreground">{member.name}</span>
                     </div>
                   </td>
                   <td className="py-2.5 px-3"><StatusBadge status={member.status} /></td>
-                  <td className="py-2.5 px-3 text-right font-mono text-xs">{member.prs}</td>
-                  <td className="py-2.5 px-3 text-right font-mono text-xs">{member.reviews}</td>
-                  <td className="py-2.5 px-3 text-right font-mono text-xs">{member.commits}</td>
+                  <td className="py-2.5 px-3 text-right text-xs">{member.prs}</td>
+                  <td className="py-2.5 px-3 text-right text-xs">{member.reviews}</td>
+                  <td className="py-2.5 px-3 text-right text-xs">{member.commits}</td>
                   <td className="py-2.5 px-3">
                     <div className="flex gap-0.5">
                       {Array.from({ length: 10 }).map((_, j) => (
@@ -125,7 +129,7 @@ const TeamDashboard = () => {
                           key={j}
                           className={`h-3 w-3 rounded-sm ${
                             j < Math.floor(member.commits / 4)
-                              ? "bg-primary/70"
+                              ? "bg-primary/60"
                               : "bg-secondary"
                           }`}
                         />

@@ -39,15 +39,19 @@ const burndownData = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "#fff",
-    border: "1px solid hsl(220, 14%, 88%)",
-    borderRadius: "6px",
-    fontSize: "12px",
-    fontFamily: "'IBM Plex Mono', monospace",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+    background: "hsl(220, 18%, 10%)",
+    border: "1px solid hsl(140, 20%, 18%)",
+    borderRadius: "4px",
+    fontSize: "11px",
+    fontFamily: "'JetBrains Mono', monospace",
+    boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
+    color: "hsl(140, 60%, 80%)",
   },
-  labelStyle: { color: "hsl(220, 25%, 12%)" },
+  labelStyle: { color: "hsl(140, 60%, 80%)" },
 };
+
+const axisStyle = { fill: "hsl(200, 10%, 48%)", fontSize: 10, fontFamily: "'JetBrains Mono', monospace" };
+const gridColor = "hsl(140, 15%, 14%)";
 
 const ProductDashboard = () => {
   const [selected, setSelected] = useState(0);
@@ -66,10 +70,10 @@ const ProductDashboard = () => {
           <button
             key={p}
             onClick={() => setSelected(i)}
-            className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`rounded px-3 py-1.5 text-[10px] font-mono font-medium transition-colors border ${
               i === selected
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                ? "bg-primary/15 text-primary border-primary/30"
+                : "bg-secondary text-secondary-foreground border-border hover:bg-secondary/80"
             }`}
           >
             {p}
@@ -88,12 +92,12 @@ const ProductDashboard = () => {
         <ChartPanel title="Sprint Burndown" subtitle="Current sprint progress vs ideal">
           <ResponsiveContainer width="100%" height={240}>
             <LineChart data={burndownData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
-              <XAxis dataKey="day" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis dataKey="day" tick={axisStyle} />
+              <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="ideal" stroke="hsl(220, 14%, 75%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="hsl(215, 60%, 42%)" strokeWidth={2} dot={{ fill: "hsl(215, 60%, 42%)", r: 3 }} />
+              <Line type="monotone" dataKey="ideal" stroke="hsl(200, 10%, 35%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
+              <Line type="monotone" dataKey="remaining" stroke="hsl(140, 70%, 45%)" strokeWidth={2} dot={{ fill: "hsl(140, 70%, 45%)", r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -101,13 +105,13 @@ const ProductDashboard = () => {
         <ChartPanel title="Sprint History" subtitle="Committed vs completed (6 sprints)">
           <ResponsiveContainer width="100%" height={240}>
             <ComposedChart data={sprintData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
-              <XAxis dataKey="sprint" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <XAxis dataKey="sprint" tick={axisStyle} />
+              <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="completed" fill="hsl(215, 60%, 42%)" radius={[3, 3, 0, 0]} />
-              <Bar dataKey="carryover" fill="hsl(38, 80%, 48%)" radius={[3, 3, 0, 0]} />
-              <Line type="monotone" dataKey="committed" stroke="hsl(220, 25%, 12%)" strokeWidth={1.5} dot={false} />
+              <Bar dataKey="completed" fill="hsl(140, 70%, 45%)" radius={[2, 2, 0, 0]} />
+              <Bar dataKey="carryover" fill="hsl(38, 90%, 50%)" radius={[2, 2, 0, 0]} />
+              <Line type="monotone" dataKey="committed" stroke="hsl(200, 80%, 55%)" strokeWidth={1.5} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -117,15 +121,15 @@ const ProductDashboard = () => {
       <ChartPanel title="Backlog Composition" subtitle="Current work item breakdown">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           {[
-            { label: "Stories", count: 24, color: "bg-primary/20 text-primary" },
-            { label: "Bugs", count: 7, color: "bg-destructive/20 text-destructive" },
-            { label: "Tech Debt", count: 5, color: "bg-warning/20 text-warning" },
-            { label: "Spikes", count: 3, color: "bg-info/20 text-info" },
-            { label: "Blocked", count: 2, color: "bg-destructive/20 text-destructive" },
+            { label: "Stories", count: 24, color: "bg-primary/15 text-primary border-primary/20" },
+            { label: "Bugs", count: 7, color: "bg-destructive/15 text-destructive border-destructive/20" },
+            { label: "Tech Debt", count: 5, color: "bg-warning/15 text-warning border-warning/20" },
+            { label: "Spikes", count: 3, color: "bg-info/15 text-info border-info/20" },
+            { label: "Blocked", count: 2, color: "bg-destructive/15 text-destructive border-destructive/20" },
           ].map((item) => (
-            <div key={item.label} className={`rounded-lg p-3 text-center ${item.color}`}>
+            <div key={item.label} className={`rounded border p-3 text-center ${item.color}`}>
               <p className="text-2xl font-bold font-mono">{item.count}</p>
-              <p className="text-[11px] font-medium mt-1">{item.label}</p>
+              <p className="text-[9px] font-mono font-medium mt-1 uppercase tracking-wider">{item.label}</p>
             </div>
           ))}
         </div>
