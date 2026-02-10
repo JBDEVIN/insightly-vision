@@ -34,19 +34,19 @@ const burndownData = [
 
 const tt = {
   contentStyle: {
-    background: "hsl(220, 18%, 10%)",
-    border: "1px solid hsl(220, 15%, 22%)",
+    background: "hsl(0, 0%, 100%)",
+    border: "1px solid hsl(220, 14%, 85%)",
     borderRadius: "2px",
     fontSize: "14px",
     fontFamily: "'JetBrains Mono', monospace",
-    color: "hsl(40, 15%, 88%)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    color: "hsl(220, 20%, 15%)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(210, 85%, 45%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 12%, 62%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
-const gc = "hsl(220, 15%, 16%)";
+const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
+const gc = "hsl(220, 14%, 90%)";
 
 const ProductDashboard = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -81,8 +81,8 @@ const ProductDashboard = () => {
               <XAxis dataKey="day" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Line type="monotone" dataKey="ideal" stroke="hsl(220, 10%, 30%)" strokeDasharray="4 4" strokeWidth={1} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="hsl(200, 80%, 62%)" strokeWidth={2} dot={{ fill: "hsl(200, 80%, 62%)", r: 2.5 }} />
+              <Line type="monotone" dataKey="ideal" stroke="hsl(220, 14%, 75%)" strokeDasharray="4 4" strokeWidth={1} dot={false} />
+              <Line type="monotone" dataKey="remaining" stroke="hsl(210, 85%, 45%)" strokeWidth={2} dot={{ fill: "hsl(210, 85%, 45%)", r: 2.5 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -94,9 +94,9 @@ const ProductDashboard = () => {
               <XAxis dataKey="sprint" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="completed" fill="hsl(200, 80%, 62%)" fillOpacity={0.7} />
-              <Bar dataKey="carryover" fill="hsl(42, 75%, 58%)" fillOpacity={0.6} />
-              <Line type="monotone" dataKey="committed" stroke="hsl(160, 50%, 52%)" strokeWidth={1.5} dot={false} />
+              <Bar dataKey="completed" fill="hsl(210, 85%, 45%)" fillOpacity={0.8} />
+              <Bar dataKey="carryover" fill="hsl(42, 90%, 45%)" fillOpacity={0.7} />
+              <Line type="monotone" dataKey="committed" stroke="hsl(160, 60%, 38%)" strokeWidth={1.5} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>
