@@ -35,26 +35,26 @@ const deploymentData = [
 ];
 
 const healthDistribution = [
-  { name: "Healthy", value: 6, color: "hsl(145, 40%, 38%)" },
-  { name: "At Risk", value: 3, color: "hsl(38, 75%, 50%)" },
-  { name: "Critical", value: 1, color: "hsl(4, 60%, 48%)" },
+  { name: "Healthy", value: 6, color: "hsl(120, 50%, 30%)" },
+  { name: "At Risk", value: 3, color: "hsl(45, 100%, 45%)" },
+  { name: "Critical", value: 1, color: "hsl(0, 85%, 50%)" },
 ];
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(38, 35%, 97%)",
-    border: "1px solid hsl(30, 18%, 82%)",
-    borderRadius: "6px",
-    fontSize: "12px",
-    fontFamily: "'IBM Plex Mono', monospace",
-    boxShadow: "0 4px 12px rgba(40,30,20,0.08)",
-    color: "hsl(20, 20%, 18%)",
+    background: "#fff",
+    border: "2px solid #0d0d0d",
+    borderRadius: "0",
+    fontSize: "11px",
+    fontFamily: "'Space Mono', monospace",
+    boxShadow: "3px 3px 0 #0d0d0d",
+    color: "#0d0d0d",
   },
-  labelStyle: { color: "hsl(20, 20%, 18%)" },
+  labelStyle: { color: "#0d0d0d", fontWeight: 700 },
 };
 
-const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
-const gridColor = "hsl(30, 15%, 86%)";
+const axisStyle = { fill: "#666", fontSize: 10, fontFamily: "'Space Mono', monospace" };
+const gridColor = "#e0e0e0";
 
 const ExecutiveDashboard = () => {
   return (
@@ -69,24 +69,24 @@ const ExecutiveDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-        <ChartPanel title="Delivery Velocity Trend" subtitle="Planned vs delivered story points (6 months)" className="lg:col-span-2">
+        <ChartPanel title="Delivery Velocity" subtitle="Planned vs delivered (6mo)" className="lg:col-span-2">
           <ResponsiveContainer width="100%" height={240}>
             <AreaChart data={velocityData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <CartesianGrid stroke={gridColor} />
               <XAxis dataKey="month" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Area type="monotone" dataKey="planned" stroke="hsl(30, 15%, 70%)" fill="hsl(30, 15%, 92%)" strokeWidth={1.5} />
-              <Area type="monotone" dataKey="delivered" stroke="hsl(18, 65%, 48%)" fill="hsl(18, 65%, 48%, 0.1)" strokeWidth={2} />
+              <Area type="monotone" dataKey="planned" stroke="#999" fill="#eee" strokeWidth={1.5} />
+              <Area type="monotone" dataKey="delivered" stroke="#0d0d0d" fill="rgba(13,13,13,0.08)" strokeWidth={2.5} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartPanel>
 
-        <ChartPanel title="Project Health" subtitle="Distribution across 10 projects">
+        <ChartPanel title="Project Health" subtitle="10 projects">
           <div className="flex items-center justify-center">
             <ResponsiveContainer width="100%" height={200}>
               <PieChart>
-                <Pie data={healthDistribution} cx="50%" cy="50%" innerRadius={55} outerRadius={80} dataKey="value" strokeWidth={0}>
+                <Pie data={healthDistribution} cx="50%" cy="50%" innerRadius={55} outerRadius={80} dataKey="value" strokeWidth={2} stroke="#0d0d0d">
                   {healthDistribution.map((entry, i) => (
                     <Cell key={i} fill={entry.color} />
                   ))}
@@ -97,8 +97,8 @@ const ExecutiveDashboard = () => {
           </div>
           <div className="flex justify-center gap-4 mt-2">
             {healthDistribution.map((item) => (
-              <div key={item.name} className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                <span className="h-2 w-2 rounded-full" style={{ background: item.color }} />
+              <div key={item.name} className="flex items-center gap-1.5 text-[10px] font-mono font-bold text-muted-foreground uppercase">
+                <span className="h-3 w-3 border-2 border-foreground" style={{ background: item.color }} />
                 {item.name} ({item.value})
               </div>
             ))}
@@ -107,43 +107,43 @@ const ExecutiveDashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-        <ChartPanel title="Quality Trend" subtitle="Open bugs vs resolved (6 months)">
+        <ChartPanel title="Quality Trend" subtitle="Bugs vs resolved (6mo)">
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={qualityData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <CartesianGrid stroke={gridColor} />
               <XAxis dataKey="month" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="bugs" stroke="hsl(4, 60%, 48%)" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="resolved" stroke="hsl(145, 40%, 38%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="bugs" stroke="hsl(0, 85%, 50%)" strokeWidth={2.5} dot={false} />
+              <Line type="monotone" dataKey="resolved" stroke="hsl(120, 50%, 30%)" strokeWidth={2.5} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
 
-        <ChartPanel title="Deployment Frequency" subtitle="Weekly deployments & failure rate">
+        <ChartPanel title="Deploy Frequency" subtitle="Weekly deploys & failures">
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={deploymentData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <CartesianGrid stroke={gridColor} />
               <XAxis dataKey="week" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="deploys" fill="hsl(18, 65%, 48%)" radius={[3, 3, 0, 0]} />
-              <Bar dataKey="failures" fill="hsl(4, 60%, 48%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="deploys" fill="#0d0d0d" />
+              <Bar dataKey="failures" fill="hsl(0, 85%, 50%)" />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
       </div>
 
-      <ChartPanel title="Project Status Summary" subtitle="All 10 active projects">
+      <ChartPanel title="Project Status" subtitle="All 10 active projects">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-sm font-mono">
             <thead>
-              <tr className="border-b border-border text-left">
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Project</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Status</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Velocity</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Lead Time</th>
-                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Quality</th>
+              <tr className="border-b-2 border-foreground text-left">
+                <th className="py-2.5 px-3 text-[9px] font-bold text-foreground uppercase tracking-wider">Project</th>
+                <th className="py-2.5 px-3 text-[9px] font-bold text-foreground uppercase tracking-wider">Status</th>
+                <th className="py-2.5 px-3 text-[9px] font-bold text-foreground uppercase tracking-wider text-right">Vel.</th>
+                <th className="py-2.5 px-3 text-[9px] font-bold text-foreground uppercase tracking-wider text-right">Lead</th>
+                <th className="py-2.5 px-3 text-[9px] font-bold text-foreground uppercase tracking-wider text-right">Qual.</th>
               </tr>
             </thead>
             <tbody>
@@ -159,12 +159,12 @@ const ExecutiveDashboard = () => {
                 { name: "Search Platform", status: "at-risk" as const, velocity: "80%", lead: "5.0d", quality: "85" },
                 { name: "Billing System", status: "healthy" as const, velocity: "97%", lead: "2.2d", quality: "95" },
               ].map((project) => (
-                <tr key={project.name} className="border-b border-border/50 hover:bg-accent/30 transition-colors">
-                  <td className="py-2.5 px-3 font-medium">{project.name}</td>
+                <tr key={project.name} className="border-b border-foreground/20 hover:bg-foreground/5 transition-colors">
+                  <td className="py-2.5 px-3 text-xs font-bold uppercase">{project.name}</td>
                   <td className="py-2.5 px-3"><StatusBadge status={project.status} /></td>
-                  <td className="py-2.5 px-3 text-right font-mono text-xs">{project.velocity}</td>
-                  <td className="py-2.5 px-3 text-right font-mono text-xs">{project.lead}</td>
-                  <td className="py-2.5 px-3 text-right font-mono text-xs">{project.quality}</td>
+                  <td className="py-2.5 px-3 text-right text-xs">{project.velocity}</td>
+                  <td className="py-2.5 px-3 text-right text-xs">{project.lead}</td>
+                  <td className="py-2.5 px-3 text-right text-xs">{project.quality}</td>
                 </tr>
               ))}
             </tbody>

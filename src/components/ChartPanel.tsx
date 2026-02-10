@@ -13,10 +13,8 @@ const ChartPanel = ({ title, subtitle, children, actions, className = "" }: Char
     <div className={`glass-card card-hover p-5 ${className}`}>
       <div className="mb-4 flex items-start justify-between">
         <div>
-          <h3 className="text-sm font-semibold text-foreground font-serif">{title}</h3>
-          {subtitle && (
-            <p className="text-xs text-muted-foreground mt-0.5">{subtitle}</p>
-          )}
+          <h3 className="text-sm font-black text-foreground uppercase tracking-wide">{title}</h3>
+          {subtitle && <p className="text-[10px] font-mono text-muted-foreground mt-0.5">{subtitle}</p>}
         </div>
         {actions && <div className="flex items-center gap-2">{actions}</div>}
       </div>

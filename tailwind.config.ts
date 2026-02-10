@@ -14,9 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Source Sans 3', 'system-ui', 'sans-serif'],
-        serif: ['Libre Baskerville', 'Georgia', 'serif'],
-        mono: ['IBM Plex Mono', 'monospace'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
