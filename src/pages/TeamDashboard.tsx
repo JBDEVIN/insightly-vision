@@ -1,13 +1,15 @@
+import { useParams, Link } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import PageHeader from "@/components/PageHeader";
 import MetricCard from "@/components/MetricCard";
 import ChartPanel from "@/components/ChartPanel";
 import StatusBadge from "@/components/StatusBadge";
-import { GitCommit, GitPullRequest, MessageSquare, Timer, User } from "lucide-react";
+import { GitCommit, GitPullRequest, MessageSquare, Timer, User, ArrowLeft } from "lucide-react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  ResponsiveContainer, LineChart, Line, ScatterChart, Scatter, ZAxis,
+  ResponsiveContainer,
 } from "recharts";
+import { getTeam } from "@/data/products";
 
 const memberData = [
   { name: "Alice", prs: 8, reviews: 12, commits: 34, status: "healthy" as const },
@@ -50,9 +52,37 @@ const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
 const gridColor = "hsl(30, 15%, 86%)";
 
 const TeamDashboard = () => {
+  const { productId, teamId } = useParams<{ productId: string; teamId: string }>();
+  const result = getTeam(productId || "", teamId || "");
+
+  if (!result) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center h-64">
+          <p className="text-muted-foreground">Team not found.</p>
+        </div>
+      </DashboardLayout>
+    );
+  }
+
+  const { product, team } = result;
+
   return (
     <DashboardLayout>
-      <PageHeader level="Level 4" title="Team Dashboard" description="Detailed team-level metrics, individual contributions, and workflow health" />
+      <div className="mb-2">
+        <Link
+          to={`/product/${product.id}`}
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft className="h-3 w-3" />
+          {product.name}
+        </Link>
+      </div>
+      <PageHeader
+        level="Level 4"
+        title={team.name}
+        description={`Team-level metrics and individual contributions — ${product.name}`}
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <MetricCard title="Team Size" value="5" subtitle="All active" icon={<User className="h-4 w-4" />} status="success" />
@@ -123,9 +153,7 @@ const TeamDashboard = () => {
                         <div
                           key={j}
                           className={`h-3 w-3 rounded-sm ${
-                            j < Math.floor(member.commits / 4)
-                              ? "bg-primary/50"
-                              : "bg-secondary"
+                            j < Math.floor(member.commits / 4) ? "bg-primary/50" : "bg-secondary"
                           }`}
                         />
                       ))}
