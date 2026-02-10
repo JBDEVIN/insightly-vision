@@ -35,20 +35,21 @@ const deploymentData = [
 ];
 
 const healthDistribution = [
-  { name: "Healthy", value: 6, color: "hsl(142, 71%, 45%)" },
-  { name: "At Risk", value: 3, color: "hsl(38, 92%, 50%)" },
-  { name: "Critical", value: 1, color: "hsl(0, 72%, 51%)" },
+  { name: "Healthy", value: 6, color: "hsl(152, 55%, 38%)" },
+  { name: "At Risk", value: 3, color: "hsl(38, 80%, 48%)" },
+  { name: "Critical", value: 1, color: "hsl(0, 65%, 48%)" },
 ];
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(222, 44%, 8%)",
-    border: "1px solid hsl(222, 30%, 16%)",
-    borderRadius: "8px",
+    background: "#fff",
+    border: "1px solid hsl(220, 14%, 88%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(210, 40%, 92%)" },
+  labelStyle: { color: "hsl(220, 25%, 12%)" },
 };
 
 const ExecutiveDashboard = () => {
@@ -104,12 +105,12 @@ const ExecutiveDashboard = () => {
         >
           <ResponsiveContainer width="100%" height={240}>
             <AreaChart data={velocityData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="month" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="month" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Area type="monotone" dataKey="planned" stroke="hsl(222, 30%, 30%)" fill="hsl(222, 30%, 14%)" strokeWidth={1.5} />
-              <Area type="monotone" dataKey="delivered" stroke="hsl(187, 80%, 48%)" fill="hsl(187, 80%, 48%, 0.1)" strokeWidth={2} />
+              <Area type="monotone" dataKey="planned" stroke="hsl(220, 14%, 75%)" fill="hsl(220, 14%, 93%)" strokeWidth={1.5} />
+              <Area type="monotone" dataKey="delivered" stroke="hsl(215, 60%, 42%)" fill="hsl(215, 60%, 42%, 0.1)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -151,12 +152,12 @@ const ExecutiveDashboard = () => {
         <ChartPanel title="Quality Trend" subtitle="Open bugs vs resolved (6 months)">
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={qualityData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="month" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="month" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="bugs" stroke="hsl(0, 72%, 51%)" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="resolved" stroke="hsl(142, 71%, 45%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="bugs" stroke="hsl(0, 65%, 48%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="resolved" stroke="hsl(152, 55%, 38%)" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -164,12 +165,12 @@ const ExecutiveDashboard = () => {
         <ChartPanel title="Deployment Frequency" subtitle="Weekly deployments & failure rate">
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={deploymentData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="week" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="week" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="deploys" fill="hsl(187, 80%, 48%)" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="failures" fill="hsl(0, 72%, 51%)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="deploys" fill="hsl(215, 60%, 42%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="failures" fill="hsl(0, 65%, 48%)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>

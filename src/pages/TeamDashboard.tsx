@@ -35,13 +35,14 @@ const dailyFlow = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(222, 44%, 8%)",
-    border: "1px solid hsl(222, 30%, 16%)",
-    borderRadius: "8px",
+    background: "#fff",
+    border: "1px solid hsl(220, 14%, 88%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(210, 40%, 92%)" },
+  labelStyle: { color: "hsl(220, 25%, 12%)" },
 };
 
 const TeamDashboard = () => {
@@ -64,11 +65,11 @@ const TeamDashboard = () => {
         <ChartPanel title="PR Age Distribution" subtitle="Time from open to merge">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={prAgeData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="name" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="name" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="count" fill="hsl(187, 80%, 48%)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="count" fill="hsl(215, 60%, 42%)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -76,13 +77,13 @@ const TeamDashboard = () => {
         <ChartPanel title="Daily Flow Metrics" subtitle="Work item state transitions this week">
           <ResponsiveContainer width="100%" height={220}>
             <BarChart data={dailyFlow}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="day" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="day" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="inProgress" stackId="a" fill="hsl(217, 91%, 60%)" />
-              <Bar dataKey="inReview" stackId="a" fill="hsl(38, 92%, 50%)" />
-              <Bar dataKey="done" stackId="a" fill="hsl(142, 71%, 45%)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="inProgress" stackId="a" fill="hsl(215, 60%, 42%)" />
+              <Bar dataKey="inReview" stackId="a" fill="hsl(38, 80%, 48%)" />
+              <Bar dataKey="done" stackId="a" fill="hsl(152, 55%, 38%)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
