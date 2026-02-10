@@ -67,7 +67,7 @@ export function DashboardSidebar() {
 
         {!collapsed ? (
           <div>
-            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-colors ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
+            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-all ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary nav-active-glow" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
               <Layers className="h-5 w-5 shrink-0" />
               <span className="flex-1 text-left truncate">L2 PRODUCT</span>
               <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${productsOpen ? "" : "-rotate-90"}`} />

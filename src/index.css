@@ -111,4 +111,9 @@
   .bloomberg-glow {
     color: hsl(var(--primary));
   }
+
+  .nav-active-glow {
+    box-shadow: inset 3px 0 8px -2px hsl(var(--sidebar-primary) / 0.4),
+                0 0 12px -3px hsl(var(--sidebar-primary) / 0.2);
+  }
 }
