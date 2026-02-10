@@ -40,7 +40,7 @@ export function DashboardSidebar() {
         {!collapsed && (
           <div className="overflow-hidden">
             <h1 className="text-lg font-bold text-sidebar-primary tracking-wider truncate">
-              DEVMETRICS
+              edBLICK
             </h1>
             <p className="text-sm text-sidebar-foreground tracking-wider font-mono">
               TERMINAL v2.1
