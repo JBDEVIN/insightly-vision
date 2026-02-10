@@ -116,4 +116,12 @@
     box-shadow: inset 3px 0 8px -2px hsl(var(--sidebar-primary) / 0.4),
                 0 0 12px -3px hsl(var(--sidebar-primary) / 0.2);
   }
+
+  .nav-hover-glow {
+    transition: box-shadow 0.2s ease;
+  }
+  .nav-hover-glow:hover {
+    box-shadow: inset 2px 0 6px -2px hsl(var(--sidebar-primary) / 0.25),
+                0 0 8px -3px hsl(var(--sidebar-primary) / 0.12);
+  }
 }

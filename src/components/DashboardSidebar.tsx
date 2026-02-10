@@ -60,14 +60,14 @@ export function DashboardSidebar() {
           </p>
         )}
 
-        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-all ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary nav-active-glow" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
+        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-all ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary nav-active-glow" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent nav-hover-glow"}`} activeClassName="">
           <LayoutDashboard className="h-5 w-5 shrink-0" />
           {!collapsed && <span className="truncate">L1 EXEC</span>}
         </NavLink>
 
         {!collapsed ? (
           <div>
-            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-all ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary nav-active-glow" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
+            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-all ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary nav-active-glow" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent nav-hover-glow"}`}>
               <Layers className="h-5 w-5 shrink-0" />
               <span className="flex-1 text-left truncate">L2 PRODUCT</span>
               <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${productsOpen ? "" : "-rotate-90"}`} />
