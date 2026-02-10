@@ -16,7 +16,7 @@ export function DashboardSidebar() {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
 
-  const isOnProduct = location.pathname.startsWith("/product");
+  const isOnProduct = location.pathname.startsWith("/product") || location.pathname.startsWith("/portfolio");
   const [productsOpen, setProductsOpen] = useState(isOnProduct);
   const [expandedProduct, setExpandedProduct] = useState<string | null>(() => {
     const match = location.pathname.match(/^\/product\/([^/]+)/);
@@ -24,7 +24,9 @@ export function DashboardSidebar() {
   });
 
   const isExecActive = location.pathname === "/";
-  const isPortfolioActive = location.pathname.startsWith("/portfolio");
+
+  const now = new Date();
+  const lastUpdated = now.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" }) + " " + now.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
 
   return (
     <aside
@@ -42,8 +44,8 @@ export function DashboardSidebar() {
             <h1 className="text-lg font-bold text-sidebar-primary tracking-wider truncate">
               edBLICK
             </h1>
-            <p className="text-sm text-sidebar-foreground tracking-wider font-mono">
-              TERMINAL v2.1
+            <p className="text-xs text-sidebar-foreground/60 tracking-wide font-mono">
+              Last updated at {lastUpdated}
             </p>
           </div>
         )}
@@ -60,11 +62,6 @@ export function DashboardSidebar() {
         <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
           <LayoutDashboard className="h-5 w-5 shrink-0" />
           {!collapsed && <span className="truncate">L1 EXEC</span>}
-        </NavLink>
-
-        <NavLink to="/portfolio" className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isPortfolioActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
-          <Layers className="h-5 w-5 shrink-0" />
-          {!collapsed && <span className="truncate">L2 PORTFOLIO</span>}
         </NavLink>
 
         {!collapsed ? (
