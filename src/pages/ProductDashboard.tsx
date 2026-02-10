@@ -1,19 +1,15 @@
-import { useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import DashboardLayout from "@/components/DashboardLayout";
 import PageHeader from "@/components/PageHeader";
 import MetricCard from "@/components/MetricCard";
 import ChartPanel from "@/components/ChartPanel";
 import StatusBadge from "@/components/StatusBadge";
-import { Bug, Clock, GitBranch, Rocket } from "lucide-react";
+import { Bug, Clock, GitBranch, Rocket, Users } from "lucide-react";
 import {
   AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, LineChart, Line, ComposedChart,
 } from "recharts";
-
-const projects = [
-  "Platform Core", "Mobile App", "Data Pipeline", "Auth Service", "Analytics Engine",
-  "API Gateway", "Admin Portal", "Notification Svc", "Search Platform", "Billing System",
-];
+import { getProduct, products } from "@/data/products";
 
 const sprintData = [
   { sprint: "S21", committed: 34, completed: 32, carryover: 2 },
@@ -54,27 +50,26 @@ const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
 const gridColor = "hsl(30, 15%, 86%)";
 
 const ProductDashboard = () => {
-  const [selected, setSelected] = useState(0);
+  const { productId } = useParams<{ productId: string }>();
+  const product = getProduct(productId || "");
+
+  if (!product) {
+    return (
+      <DashboardLayout>
+        <div className="flex items-center justify-center h-64">
+          <p className="text-muted-foreground">Product not found.</p>
+        </div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
-      <PageHeader level="Level 3" title="Product Dashboard" description="Individual product engineering metrics and sprint health" />
-
-      <div className="flex flex-wrap gap-2 mb-6">
-        {projects.map((p, i) => (
-          <button
-            key={p}
-            onClick={() => setSelected(i)}
-            className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
-              i === selected
-                ? "bg-primary text-primary-foreground"
-                : "bg-secondary text-secondary-foreground hover:bg-accent"
-            }`}
-          >
-            {p}
-          </button>
-        ))}
-      </div>
+      <PageHeader
+        level="Level 3"
+        title={product.name}
+        description={`Engineering metrics and sprint health — ${product.teams.length} team${product.teams.length !== 1 ? "s" : ""}`}
+      />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <MetricCard title="Sprint Velocity" value="36 pts" subtitle="Sprint 26 current" trend={{ value: 5.8, label: "vs avg" }} icon={<Rocket className="h-4 w-4" />} status="success" />
@@ -112,22 +107,46 @@ const ProductDashboard = () => {
         </ChartPanel>
       </div>
 
-      <ChartPanel title="Backlog Composition" subtitle="Current work item breakdown">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-          {[
-            { label: "Stories", count: 24, color: "bg-primary/10 text-primary" },
-            { label: "Bugs", count: 7, color: "bg-destructive/10 text-destructive" },
-            { label: "Tech Debt", count: 5, color: "bg-warning/10 text-warning" },
-            { label: "Spikes", count: 3, color: "bg-info/10 text-info" },
-            { label: "Blocked", count: 2, color: "bg-destructive/10 text-destructive" },
-          ].map((item) => (
-            <div key={item.label} className={`rounded-md border border-border p-3 text-center ${item.color}`}>
-              <p className="text-2xl font-bold font-serif">{item.count}</p>
-              <p className="text-[11px] font-medium mt-1">{item.label}</p>
-            </div>
+      {/* Teams Overview */}
+      <ChartPanel title="Teams" subtitle={`${product.teams.length} teams in ${product.name}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {product.teams.map((team) => (
+            <Link
+              key={team.id}
+              to={`/product/${product.id}/team/${team.id}`}
+              className="flex items-center gap-3 rounded-md border border-border p-3 hover:bg-accent/30 transition-colors group"
+            >
+              <div className="rounded-md bg-primary/10 border border-primary/15 p-2 text-primary">
+                <Users className="h-4 w-4" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">{team.name}</p>
+                <p className="text-[11px] text-muted-foreground">View team dashboard →</p>
+              </div>
+            </Link>
           ))}
         </div>
       </ChartPanel>
+
+      {/* Backlog */}
+      <div className="mt-4">
+        <ChartPanel title="Backlog Composition" subtitle="Current work item breakdown">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+            {[
+              { label: "Stories", count: 24, color: "bg-primary/10 text-primary" },
+              { label: "Bugs", count: 7, color: "bg-destructive/10 text-destructive" },
+              { label: "Tech Debt", count: 5, color: "bg-warning/10 text-warning" },
+              { label: "Spikes", count: 3, color: "bg-info/10 text-info" },
+              { label: "Blocked", count: 2, color: "bg-destructive/10 text-destructive" },
+            ].map((item) => (
+              <div key={item.label} className={`rounded-md border border-border p-3 text-center ${item.color}`}>
+                <p className="text-2xl font-bold font-serif">{item.count}</p>
+                <p className="text-[11px] font-medium mt-1">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </ChartPanel>
+      </div>
     </DashboardLayout>
   );
 };
