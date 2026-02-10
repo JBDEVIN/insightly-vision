@@ -13,6 +13,8 @@ export const products: Product[] = [
   { id: "platform-core", name: "Platform Core", teams: [
     { id: "core-backend", name: "Core Backend" },
     { id: "core-infra", name: "Core Infrastructure" },
+    { id: "core-frontend", name: "Core Frontend" },
+    { id: "core-devex", name: "Developer Experience" },
   ]},
   { id: "mobile-app", name: "Mobile App", teams: [
     { id: "mobile-ios", name: "iOS Team" },
@@ -22,34 +24,25 @@ export const products: Product[] = [
   { id: "data-pipeline", name: "Data Pipeline", teams: [
     { id: "data-ingestion", name: "Ingestion" },
     { id: "data-processing", name: "Processing" },
-  ]},
-  { id: "auth-service", name: "Auth Service", teams: [
-    { id: "auth-core", name: "Auth Core" },
-  ]},
-  { id: "analytics-engine", name: "Analytics Engine", teams: [
-    { id: "analytics-frontend", name: "Analytics Frontend" },
-    { id: "analytics-backend", name: "Analytics Backend" },
+    { id: "data-quality", name: "Data Quality" },
+    { id: "data-platform", name: "Platform Services" },
+    { id: "data-analytics", name: "Analytics" },
   ]},
   { id: "api-gateway", name: "API Gateway", teams: [
-    { id: "gateway-team", name: "Gateway Team" },
-  ]},
-  { id: "admin-portal", name: "Admin Portal", teams: [
-    { id: "admin-ui", name: "Admin UI" },
-    { id: "admin-backend", name: "Admin Backend" },
-  ]},
-  { id: "notification-svc", name: "Notification Svc", teams: [
-    { id: "notif-team", name: "Notifications Team" },
-  ]},
-  { id: "search-platform", name: "Search Platform", teams: [
-    { id: "search-indexing", name: "Indexing" },
-    { id: "search-ranking", name: "Ranking" },
+    { id: "gateway-core", name: "Gateway Core" },
+    { id: "gateway-auth", name: "Auth & Security" },
+    { id: "gateway-perf", name: "Performance" },
+    { id: "gateway-dx", name: "Developer Portal" },
+    { id: "gateway-infra", name: "Infrastructure" },
+    { id: "gateway-monitoring", name: "Monitoring" },
   ]},
   { id: "billing-system", name: "Billing System", teams: [
     { id: "billing-payments", name: "Payments" },
     { id: "billing-invoicing", name: "Invoicing" },
+    { id: "billing-subs", name: "Subscriptions" },
+    { id: "billing-reporting", name: "Financial Reporting" },
   ]},
 ];
-
 export function getProduct(productId: string): Product | undefined {
   return products.find(p => p.id === productId);
 }

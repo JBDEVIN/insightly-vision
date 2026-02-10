@@ -45,7 +45,7 @@ const tt = {
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
   },
-  labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
 };
 
 const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
@@ -92,7 +92,7 @@ const TeamDashboard = () => {
               <XAxis dataKey="name" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="count" fill="hsl(35, 100%, 50%)" fillOpacity={0.7} />
+              <Bar dataKey="count" fill="hsl(200, 80%, 62%)" fillOpacity={0.7} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -104,9 +104,9 @@ const TeamDashboard = () => {
               <XAxis dataKey="day" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="inProgress" stackId="a" fill="hsl(199, 89%, 48%)" fillOpacity={0.7} />
-              <Bar dataKey="inReview" stackId="a" fill="hsl(35, 100%, 50%)" fillOpacity={0.6} />
-              <Bar dataKey="done" stackId="a" fill="hsl(142, 71%, 45%)" fillOpacity={0.7} />
+              <Bar dataKey="inProgress" stackId="a" fill="hsl(210, 60%, 62%)" fillOpacity={0.7} />
+              <Bar dataKey="inReview" stackId="a" fill="hsl(42, 75%, 58%)" fillOpacity={0.6} />
+              <Bar dataKey="done" stackId="a" fill="hsl(160, 50%, 52%)" fillOpacity={0.7} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>

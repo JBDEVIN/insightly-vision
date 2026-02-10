@@ -36,7 +36,7 @@ const tt = {
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
   },
-  labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
 };
 
 const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
@@ -61,7 +61,7 @@ const PortfolioDashboard = () => {
               <PolarGrid stroke={gc} />
               <PolarAngleAxis dataKey="metric" tick={{ ...ax, fontSize: 11 }} />
               <PolarRadiusAxis tick={{ ...ax, fontSize: 10 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="hsl(35, 100%, 50%)" fill="hsl(35, 100%, 50%)" fillOpacity={0.12} strokeWidth={2} />
+              <Radar name="Score" dataKey="score" stroke="hsl(200, 80%, 62%)" fill="hsl(200, 80%, 62%)" fillOpacity={0.12} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -74,7 +74,7 @@ const PortfolioDashboard = () => {
               <YAxis dataKey="team" type="category" tick={ax} width={55} />
               <Tooltip {...tt} />
               <Bar dataKey="capacity" fill="hsl(220, 15%, 22%)" />
-              <Bar dataKey="utilization" fill="hsl(35, 100%, 50%)" fillOpacity={0.8} />
+              <Bar dataKey="utilization" fill="hsl(200, 80%, 62%)" fillOpacity={0.8} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
