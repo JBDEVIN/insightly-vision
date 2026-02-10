@@ -94,7 +94,10 @@
   }
 
   .glass-card {
-    @apply bg-card border border-border;
+    @apply border border-border;
+    background: hsl(var(--card) / 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
   .metric-glow {
