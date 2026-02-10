@@ -98,7 +98,7 @@ export function DashboardSidebar() {
                             const teamPath = `/product/${product.id}/team/${team.id}`;
                             const isTeamActive = location.pathname === teamPath;
                             return (
-                              <Link key={team.id} to={teamPath} className={`flex items-center gap-1.5 px-1.5 py-1 text-xs font-mono tracking-wide transition-colors ${isTeamActive ? "text-sidebar-primary" : "text-sidebar-foreground/60 hover:text-sidebar-primary"}`}>
+                              <Link key={team.id} to={teamPath} className={`flex items-center gap-1.5 px-1.5 py-1 text-xs font-mono tracking-wide transition-colors ${isTeamActive ? "text-sidebar-primary font-medium" : "text-sidebar-foreground/65 hover:text-sidebar-primary"}`}>
                                 <Users className="h-3.5 w-3.5 shrink-0" />
                                 <span className="truncate">{team.name}</span>
                               </Link>
