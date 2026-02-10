@@ -75,7 +75,7 @@ const TeamDashboard = () => {
           {product.name}
         </Link>
       </div>
-      <PageHeader level="Level 4" title={team.name} description={`Team metrics — ${product.name}`} />
+      <PageHeader level="Level 3" title={team.name} description={`Team metrics — ${product.name}`} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         <MetricCard title="Team Size" value="5" subtitle="All active" icon={<User className="h-4 w-4" />} status="success" />
