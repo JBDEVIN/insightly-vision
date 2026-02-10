@@ -46,7 +46,7 @@ export function DashboardSidebar() {
               edBLICK
             </h1>
             <p className="text-[10px] text-sidebar-foreground/60 tracking-wide font-mono leading-tight text-center">
-              Last updated at<br />{lastDate} {lastTime}
+              Last updated<br />{lastDate} {lastTime}
             </p>
           </div>
         )}
