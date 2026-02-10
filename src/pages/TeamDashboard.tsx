@@ -35,28 +35,24 @@ const dailyFlow = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(220, 18%, 10%)",
-    border: "1px solid hsl(140, 20%, 18%)",
-    borderRadius: "4px",
-    fontSize: "11px",
-    fontFamily: "'JetBrains Mono', monospace",
-    boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-    color: "hsl(140, 60%, 80%)",
+    background: "hsl(230, 20%, 16%)",
+    border: "1px solid hsl(230, 15%, 25%)",
+    borderRadius: "8px",
+    fontSize: "12px",
+    fontFamily: "'DM Mono', monospace",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+    color: "hsl(220, 20%, 92%)",
   },
-  labelStyle: { color: "hsl(140, 60%, 80%)" },
+  labelStyle: { color: "hsl(220, 20%, 92%)" },
 };
 
-const axisStyle = { fill: "hsl(200, 10%, 48%)", fontSize: 10, fontFamily: "'JetBrains Mono', monospace" };
-const gridColor = "hsl(140, 15%, 14%)";
+const axisStyle = { fill: "hsl(220, 10%, 55%)", fontSize: 11 };
+const gridColor = "hsl(230, 15%, 22%)";
 
 const TeamDashboard = () => {
   return (
     <DashboardLayout>
-      <PageHeader
-        level="Level 4"
-        title="Team Dashboard"
-        description="Detailed team-level metrics, individual contributions, and workflow health"
-      />
+      <PageHeader level="Level 4" title="Team Dashboard" description="Detailed team-level metrics, individual contributions, and workflow health" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <MetricCard title="Team Size" value="5" subtitle="All active" icon={<User className="h-4 w-4" />} status="success" />
@@ -73,7 +69,7 @@ const TeamDashboard = () => {
               <XAxis dataKey="name" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="count" fill="hsl(140, 70%, 45%)" radius={[2, 2, 0, 0]} />
+              <Bar dataKey="count" fill="hsl(260, 80%, 65%)" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -85,43 +81,42 @@ const TeamDashboard = () => {
               <XAxis dataKey="day" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="inProgress" stackId="a" fill="hsl(200, 80%, 55%)" />
-              <Bar dataKey="inReview" stackId="a" fill="hsl(38, 90%, 50%)" />
-              <Bar dataKey="done" stackId="a" fill="hsl(140, 70%, 45%)" radius={[2, 2, 0, 0]} />
+              <Bar dataKey="inProgress" stackId="a" fill="hsl(200, 75%, 55%)" />
+              <Bar dataKey="inReview" stackId="a" fill="hsl(40, 85%, 55%)" />
+              <Bar dataKey="done" stackId="a" fill="hsl(160, 60%, 50%)" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
       </div>
 
-      {/* Team Members Detail */}
       <ChartPanel title="Individual Contributions" subtitle="Current sprint activity per team member">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm font-mono">
+          <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border text-left">
-                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider">Member</th>
-                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider">Status</th>
-                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider text-right">PRs Merged</th>
-                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider text-right">Reviews</th>
-                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider text-right">Commits</th>
-                <th className="py-2.5 px-3 text-[9px] font-medium text-muted-foreground uppercase tracking-wider">Activity</th>
+                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Member</th>
+                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Status</th>
+                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">PRs Merged</th>
+                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Reviews</th>
+                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide text-right">Commits</th>
+                <th className="py-2.5 px-3 text-xs font-medium text-muted-foreground uppercase tracking-wide">Activity</th>
               </tr>
             </thead>
             <tbody>
               {memberData.map((member) => (
-                <tr key={member.name} className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                <tr key={member.name} className="border-b border-border/40 hover:bg-primary/5 transition-colors">
                   <td className="py-2.5 px-3">
                     <div className="flex items-center gap-2">
-                      <div className="h-7 w-7 rounded bg-primary/10 border border-primary/20 flex items-center justify-center text-[10px] font-mono text-primary">
+                      <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 border border-primary/20 flex items-center justify-center text-xs font-mono text-primary">
                         {member.name[0]}
                       </div>
-                      <span className="font-medium text-xs text-foreground">{member.name}</span>
+                      <span className="font-medium">{member.name}</span>
                     </div>
                   </td>
                   <td className="py-2.5 px-3"><StatusBadge status={member.status} /></td>
-                  <td className="py-2.5 px-3 text-right text-xs">{member.prs}</td>
-                  <td className="py-2.5 px-3 text-right text-xs">{member.reviews}</td>
-                  <td className="py-2.5 px-3 text-right text-xs">{member.commits}</td>
+                  <td className="py-2.5 px-3 text-right font-mono text-xs">{member.prs}</td>
+                  <td className="py-2.5 px-3 text-right font-mono text-xs">{member.reviews}</td>
+                  <td className="py-2.5 px-3 text-right font-mono text-xs">{member.commits}</td>
                   <td className="py-2.5 px-3">
                     <div className="flex gap-0.5">
                       {Array.from({ length: 10 }).map((_, j) => (
@@ -129,8 +124,8 @@ const TeamDashboard = () => {
                           key={j}
                           className={`h-3 w-3 rounded-sm ${
                             j < Math.floor(member.commits / 4)
-                              ? "bg-primary/60"
-                              : "bg-secondary"
+                              ? "bg-primary/50"
+                              : "bg-secondary/60"
                           }`}
                         />
                       ))}

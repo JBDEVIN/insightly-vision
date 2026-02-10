@@ -28,28 +28,24 @@ const teamCapacity = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(220, 18%, 10%)",
-    border: "1px solid hsl(140, 20%, 18%)",
-    borderRadius: "4px",
-    fontSize: "11px",
-    fontFamily: "'JetBrains Mono', monospace",
-    boxShadow: "0 4px 16px rgba(0,0,0,0.4)",
-    color: "hsl(140, 60%, 80%)",
+    background: "hsl(230, 20%, 16%)",
+    border: "1px solid hsl(230, 15%, 25%)",
+    borderRadius: "8px",
+    fontSize: "12px",
+    fontFamily: "'DM Mono', monospace",
+    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
+    color: "hsl(220, 20%, 92%)",
   },
-  labelStyle: { color: "hsl(140, 60%, 80%)" },
+  labelStyle: { color: "hsl(220, 20%, 92%)" },
 };
 
-const axisStyle = { fill: "hsl(200, 10%, 48%)", fontSize: 10, fontFamily: "'JetBrains Mono', monospace" };
-const gridColor = "hsl(140, 15%, 14%)";
+const axisStyle = { fill: "hsl(220, 10%, 55%)", fontSize: 11 };
+const gridColor = "hsl(230, 15%, 22%)";
 
 const PortfolioDashboard = () => {
   return (
     <DashboardLayout>
-      <PageHeader
-        level="Level 2"
-        title="Portfolio Overview"
-        description="Cross-product engineering metrics and resource allocation"
-      />
+      <PageHeader level="Level 2" title="Portfolio Overview" description="Cross-product engineering metrics and resource allocation" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <MetricCard title="Portfolio Velocity" value="91%" trend={{ value: 3.1, label: "vs target" }} icon={<TrendingUp className="h-4 w-4" />} status="success" />
@@ -63,9 +59,9 @@ const PortfolioDashboard = () => {
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData}>
               <PolarGrid stroke={gridColor} />
-              <PolarAngleAxis dataKey="metric" tick={{ ...axisStyle, fontSize: 10 }} />
-              <PolarRadiusAxis tick={{ ...axisStyle, fontSize: 9 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="hsl(140, 70%, 45%)" fill="hsl(140, 70%, 45%, 0.12)" strokeWidth={2} />
+              <PolarAngleAxis dataKey="metric" tick={{ ...axisStyle, fontSize: 11 }} />
+              <PolarRadiusAxis tick={{ ...axisStyle, fontSize: 10 }} domain={[0, 100]} />
+              <Radar name="Score" dataKey="score" stroke="hsl(260, 80%, 65%)" fill="hsl(260, 80%, 65%, 0.15)" strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -77,14 +73,13 @@ const PortfolioDashboard = () => {
               <XAxis type="number" domain={[0, 100]} tick={axisStyle} />
               <YAxis dataKey="team" type="category" tick={axisStyle} width={60} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="capacity" fill="hsl(200, 10%, 25%)" radius={[0, 2, 2, 0]} />
-              <Bar dataKey="utilization" fill="hsl(140, 70%, 45%)" radius={[0, 2, 2, 0]} />
+              <Bar dataKey="capacity" fill="hsl(220, 15%, 30%)" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="utilization" fill="hsl(260, 80%, 65%)" radius={[0, 4, 4, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
       </div>
 
-      {/* Dependency Matrix */}
       <ChartPanel title="Cross-Product Dependencies" subtitle="Active inter-team blockers and dependencies">
         <div className="space-y-3">
           {[
@@ -93,14 +88,14 @@ const PortfolioDashboard = () => {
             { from: "Search Platform", to: "Platform Core", type: "Dependency", status: "at-risk" as const, desc: "Index rebuild API" },
             { from: "Admin Portal", to: "Auth Service", type: "Blocker", status: "on-track" as const, desc: "SSO integration" },
           ].map((dep, i) => (
-            <div key={i} className="flex items-center justify-between rounded bg-secondary/50 border border-border px-4 py-3">
+            <div key={i} className="flex items-center justify-between rounded-lg bg-secondary/40 backdrop-blur-sm border border-border/40 px-4 py-3">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs text-primary">{dep.from}</span>
-                <span className="text-muted-foreground text-xs font-mono">→</span>
+                <span className="text-muted-foreground text-xs">→</span>
                 <span className="font-mono text-xs text-foreground">{dep.to}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono text-muted-foreground">{dep.desc}</span>
+                <span className="text-xs text-muted-foreground">{dep.desc}</span>
                 <StatusBadge status={dep.status} label={dep.type} />
               </div>
             </div>
