@@ -26,7 +26,8 @@ export function DashboardSidebar() {
   const isExecActive = location.pathname === "/";
 
   const now = new Date();
-  const lastUpdated = now.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" }) + " " + now.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+  const lastDate = now.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+  const lastTime = now.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
 
   return (
     <aside
@@ -44,8 +45,8 @@ export function DashboardSidebar() {
             <h1 className="text-lg font-bold text-sidebar-primary tracking-wider truncate">
               edBLICK
             </h1>
-            <p className="text-xs text-sidebar-foreground/60 tracking-wide font-mono">
-              Last updated at {lastUpdated}
+            <p className="text-[10px] text-sidebar-foreground/60 tracking-wide font-mono leading-tight text-center">
+              Last updated at<br />{lastDate} {lastTime}
             </p>
           </div>
         )}
