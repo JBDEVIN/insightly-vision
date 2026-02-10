@@ -37,7 +37,7 @@ const tt = {
     background: "hsl(220, 18%, 10%)",
     border: "1px solid hsl(220, 15%, 22%)",
     borderRadius: "2px",
-    fontSize: "10px",
+    fontSize: "12px",
     fontFamily: "'JetBrains Mono', monospace",
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
@@ -45,7 +45,7 @@ const tt = {
   labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 9, fontFamily: "'JetBrains Mono', monospace" };
+const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
 const gc = "hsl(220, 15%, 16%)";
 
 const ProductDashboard = () => {
@@ -110,8 +110,8 @@ const ProductDashboard = () => {
                 <Users className="h-3.5 w-3.5" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-[11px] font-mono text-card-foreground truncate">{team.name}</p>
-                <p className="text-[8px] font-mono text-muted-foreground">VIEW →</p>
+                <p className="text-sm font-mono text-card-foreground truncate">{team.name}</p>
+                <p className="text-[10px] font-mono text-muted-foreground">VIEW →</p>
               </div>
             </Link>
           ))}
@@ -129,8 +129,8 @@ const ProductDashboard = () => {
               { label: "BLOCKED", count: 2, color: "border-destructive/60" },
             ].map((item) => (
               <div key={item.label} className={`border ${item.color} p-2.5 text-center bg-secondary/30`}>
-                <p className="text-xl font-mono font-bold text-primary">{item.count}</p>
-                <p className="text-[8px] font-mono text-muted-foreground mt-0.5 tracking-widest">{item.label}</p>
+                <p className="text-2xl font-mono font-bold text-primary">{item.count}</p>
+                <p className="text-[10px] font-mono text-muted-foreground mt-0.5 tracking-widest">{item.label}</p>
               </div>
             ))}
           </div>
