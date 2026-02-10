@@ -5,12 +5,12 @@ import {
   Users,
   ChevronDown,
   ChevronRight,
-  Activity,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import { products } from "@/data/products";
+import logo from "@/assets/logo.png";
 
 export function DashboardSidebar() {
   const location = useLocation();
