@@ -35,9 +35,9 @@ const deploymentData = [
 ];
 
 const healthDistribution = [
-  { name: "Healthy", value: 6, color: "hsl(142, 71%, 45%)" },
-  { name: "At Risk", value: 3, color: "hsl(35, 100%, 50%)" },
-  { name: "Critical", value: 1, color: "hsl(0, 72%, 51%)" },
+  { name: "Healthy", value: 6, color: "hsl(160, 50%, 52%)" },
+  { name: "At Risk", value: 3, color: "hsl(42, 75%, 58%)" },
+  { name: "Critical", value: 1, color: "hsl(0, 55%, 55%)" },
 ];
 
 const tt = {
@@ -50,7 +50,7 @@ const tt = {
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
   },
-  labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
 };
 
 const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
@@ -77,7 +77,7 @@ const ExecutiveDashboard = () => {
               <YAxis tick={ax} />
               <Tooltip {...tt} />
               <Area type="monotone" dataKey="planned" stroke="hsl(220, 10%, 35%)" fill="hsl(220, 15%, 14%)" strokeWidth={1} />
-              <Area type="monotone" dataKey="delivered" stroke="hsl(35, 100%, 50%)" fill="hsl(35, 100%, 50%)" fillOpacity={0.1} strokeWidth={2} />
+              <Area type="monotone" dataKey="delivered" stroke="hsl(200, 80%, 62%)" fill="hsl(200, 80%, 62%)" fillOpacity={0.1} strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -114,8 +114,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="month" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Line type="monotone" dataKey="bugs" stroke="hsl(0, 72%, 51%)" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="resolved" stroke="hsl(142, 71%, 45%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="bugs" stroke="hsl(42, 75%, 58%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="resolved" stroke="hsl(160, 50%, 52%)" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -127,8 +127,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="week" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="deploys" fill="hsl(35, 100%, 50%)" fillOpacity={0.7} />
-              <Bar dataKey="failures" fill="hsl(0, 72%, 51%)" />
+              <Bar dataKey="deploys" fill="hsl(200, 80%, 62%)" fillOpacity={0.7} />
+              <Bar dataKey="failures" fill="hsl(42, 75%, 58%)" />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>

@@ -96,8 +96,8 @@ export default {
           to: { height: "0" },
         },
         "pulse-glow": {
-          "0%, 100%": { opacity: "1", textShadow: "0 0 8px hsl(35 100% 50% / 0.4)" },
-          "50%": { opacity: "0.7", textShadow: "0 0 4px hsl(35 100% 50% / 0.2)" },
+          "0%, 100%": { opacity: "1", textShadow: "0 0 8px hsl(200 80% 62% / 0.4)" },
+          "50%": { opacity: "0.7", textShadow: "0 0 4px hsl(200 80% 62% / 0.2)" },
         },
         "slide-up": {
           from: { opacity: "0", transform: "translateY(4px)" },

@@ -42,7 +42,7 @@ const tt = {
     color: "hsl(40, 15%, 80%)",
     boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
   },
-  labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
 };
 
 const ax = { fill: "hsl(220, 10%, 50%)", fontSize: 11, fontFamily: "'JetBrains Mono', monospace" };
@@ -82,7 +82,7 @@ const ProductDashboard = () => {
               <YAxis tick={ax} />
               <Tooltip {...tt} />
               <Line type="monotone" dataKey="ideal" stroke="hsl(220, 10%, 30%)" strokeDasharray="4 4" strokeWidth={1} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="hsl(35, 100%, 50%)" strokeWidth={2} dot={{ fill: "hsl(35, 100%, 50%)", r: 2.5 }} />
+              <Line type="monotone" dataKey="remaining" stroke="hsl(200, 80%, 62%)" strokeWidth={2} dot={{ fill: "hsl(200, 80%, 62%)", r: 2.5 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -94,9 +94,9 @@ const ProductDashboard = () => {
               <XAxis dataKey="sprint" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="completed" fill="hsl(35, 100%, 50%)" fillOpacity={0.7} />
-              <Bar dataKey="carryover" fill="hsl(0, 72%, 51%)" fillOpacity={0.6} />
-              <Line type="monotone" dataKey="committed" stroke="hsl(142, 71%, 45%)" strokeWidth={1.5} dot={false} />
+              <Bar dataKey="completed" fill="hsl(200, 80%, 62%)" fillOpacity={0.7} />
+              <Bar dataKey="carryover" fill="hsl(42, 75%, 58%)" fillOpacity={0.6} />
+              <Line type="monotone" dataKey="committed" stroke="hsl(160, 50%, 52%)" strokeWidth={1.5} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>
