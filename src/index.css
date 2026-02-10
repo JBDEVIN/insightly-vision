@@ -6,57 +6,57 @@
 
 @layer base {
   :root {
-    --background: 220 18% 9%;
-    --foreground: 200 65% 85%;
+    --background: 220 20% 97%;
+    --foreground: 220 20% 15%;
 
-    --card: 220 16% 13%;
-    --card-foreground: 40 20% 94%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 12%;
 
-    --popover: 220 16% 13%;
-    --popover-foreground: 40 20% 94%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 12%;
 
-    --primary: 200 85% 68%;
-    --primary-foreground: 210 30% 98%;
-    --secondary: 220 14% 17%;
-    --secondary-foreground: 40 12% 80%;
+    --primary: 210 85% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 92%;
+    --secondary-foreground: 220 20% 25%;
 
-    --muted: 220 14% 16%;
-    --muted-foreground: 220 10% 68%;
+    --muted: 220 14% 93%;
+    --muted-foreground: 220 10% 40%;
 
-    --accent: 220 14% 19%;
-    --accent-foreground: 40 18% 95%;
+    --accent: 220 14% 90%;
+    --accent-foreground: 220 20% 12%;
 
-    --destructive: 0 55% 55%;
+    --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 160 55% 58%;
-    --success-foreground: 210 30% 98%;
+    --success: 160 60% 38%;
+    --success-foreground: 0 0% 100%;
 
-    --warning: 42 80% 65%;
-    --warning-foreground: 220 20% 10%;
+    --warning: 42 90% 50%;
+    --warning-foreground: 220 20% 12%;
 
-    --info: 210 65% 68%;
-    --info-foreground: 210 30% 98%;
-    --border: 220 14% 24%;
-    --input: 220 14% 26%;
-    --ring: 200 85% 68%;
+    --info: 210 70% 50%;
+    --info-foreground: 0 0% 100%;
+    --border: 220 14% 85%;
+    --input: 220 14% 82%;
+    --ring: 210 85% 45%;
 
     --radius: 2px;
 
-    --sidebar-background: 220 20% 7%;
-    --sidebar-foreground: 220 10% 68%;
-    --sidebar-primary: 200 85% 68%;
-    --sidebar-primary-foreground: 210 30% 98%;
-    --sidebar-accent: 220 14% 15%;
-    --sidebar-accent-foreground: 40 18% 95%;
-    --sidebar-border: 220 14% 20%;
-    --sidebar-ring: 200 85% 68%;
+    --sidebar-background: 220 20% 95%;
+    --sidebar-foreground: 220 10% 40%;
+    --sidebar-primary: 210 85% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 14% 90%;
+    --sidebar-accent-foreground: 220 20% 12%;
+    --sidebar-border: 220 14% 88%;
+    --sidebar-ring: 210 85% 45%;
 
-    --chart-1: 200 85% 68%;
-    --chart-2: 160 55% 58%;
-    --chart-3: 42 80% 65%;
-    --chart-4: 280 50% 70%;
-    --chart-5: 330 55% 68%;
+    --chart-1: 210 85% 45%;
+    --chart-2: 160 60% 38%;
+    --chart-3: 42 90% 50%;
+    --chart-4: 280 50% 55%;
+    --chart-5: 330 55% 55%;
     --font-mono: 'JetBrains Mono', monospace;
     --font-sans: 'Inter', system-ui, sans-serif;
   }
