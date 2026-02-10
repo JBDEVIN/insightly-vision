@@ -32,13 +32,21 @@ const burndownData = [
   { day: "D10", remaining: 2, ideal: 3.8 },
 ];
 
-const tooltipStyle = {
-  contentStyle: { background: "#fff", border: "2px solid #0d0d0d", borderRadius: "0", fontSize: "11px", fontFamily: "'Space Mono', monospace", boxShadow: "3px 3px 0 #0d0d0d", color: "#0d0d0d" },
-  labelStyle: { color: "#0d0d0d", fontWeight: 700 },
+const tt = {
+  contentStyle: {
+    background: "hsl(220, 18%, 10%)",
+    border: "1px solid hsl(220, 15%, 22%)",
+    borderRadius: "2px",
+    fontSize: "10px",
+    fontFamily: "'JetBrains Mono', monospace",
+    color: "hsl(40, 15%, 80%)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+  },
+  labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
 };
 
-const axisStyle = { fill: "#666", fontSize: 10, fontFamily: "'Space Mono', monospace" };
-const gridColor = "#e0e0e0";
+const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 9, fontFamily: "'JetBrains Mono', monospace" };
+const gc = "hsl(220, 15%, 16%)";
 
 const ProductDashboard = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -48,7 +56,7 @@ const ProductDashboard = () => {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center h-64">
-          <p className="font-mono text-muted-foreground uppercase">Product not found.</p>
+          <p className="font-mono text-muted-foreground">Product not found.</p>
         </div>
       </DashboardLayout>
     );
@@ -58,71 +66,71 @@ const ProductDashboard = () => {
     <DashboardLayout>
       <PageHeader level="Level 3" title={product.name} description={`Engineering metrics — ${product.teams.length} team${product.teams.length !== 1 ? "s" : ""}`} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         <MetricCard title="Sprint Velocity" value="36 pts" subtitle="Sprint 26" trend={{ value: 5.8, label: "vs avg" }} icon={<Rocket className="h-4 w-4" />} status="success" />
         <MetricCard title="Cycle Time" value="2.8d" subtitle="PR to merge" trend={{ value: -8, label: "improving" }} icon={<Clock className="h-4 w-4" />} status="success" />
         <MetricCard title="Open Defects" value="7" subtitle="2 P1, 5 P2" icon={<Bug className="h-4 w-4" />} status="warning" />
         <MetricCard title="Deploy Freq" value="4.2/wk" subtitle="Failure: 2.1%" icon={<GitBranch className="h-4 w-4" />} status="success" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         <ChartPanel title="Sprint Burndown" subtitle="Progress vs ideal">
-          <ResponsiveContainer width="100%" height={240}>
+          <ResponsiveContainer width="100%" height={220}>
             <LineChart data={burndownData}>
-              <CartesianGrid stroke={gridColor} />
-              <XAxis dataKey="day" tick={axisStyle} />
-              <YAxis tick={axisStyle} />
-              <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="ideal" stroke="#ccc" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="#0d0d0d" strokeWidth={2.5} dot={{ fill: "#0d0d0d", r: 3 }} />
+              <CartesianGrid stroke={gc} strokeDasharray="3 3" />
+              <XAxis dataKey="day" tick={ax} />
+              <YAxis tick={ax} />
+              <Tooltip {...tt} />
+              <Line type="monotone" dataKey="ideal" stroke="hsl(220, 10%, 30%)" strokeDasharray="4 4" strokeWidth={1} dot={false} />
+              <Line type="monotone" dataKey="remaining" stroke="hsl(35, 100%, 50%)" strokeWidth={2} dot={{ fill: "hsl(35, 100%, 50%)", r: 2.5 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
 
         <ChartPanel title="Sprint History" subtitle="Committed vs completed (6 sprints)">
-          <ResponsiveContainer width="100%" height={240}>
+          <ResponsiveContainer width="100%" height={220}>
             <ComposedChart data={sprintData}>
-              <CartesianGrid stroke={gridColor} />
-              <XAxis dataKey="sprint" tick={axisStyle} />
-              <YAxis tick={axisStyle} />
-              <Tooltip {...tooltipStyle} />
-              <Bar dataKey="completed" fill="#0d0d0d" />
-              <Bar dataKey="carryover" fill="hsl(45, 100%, 45%)" />
-              <Line type="monotone" dataKey="committed" stroke="hsl(0, 85%, 50%)" strokeWidth={2} dot={false} />
+              <CartesianGrid stroke={gc} strokeDasharray="3 3" />
+              <XAxis dataKey="sprint" tick={ax} />
+              <YAxis tick={ax} />
+              <Tooltip {...tt} />
+              <Bar dataKey="completed" fill="hsl(35, 100%, 50%)" fillOpacity={0.7} />
+              <Bar dataKey="carryover" fill="hsl(0, 72%, 51%)" fillOpacity={0.6} />
+              <Line type="monotone" dataKey="committed" stroke="hsl(142, 71%, 45%)" strokeWidth={1.5} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>
       </div>
 
       <ChartPanel title="Teams" subtitle={`${product.teams.length} teams`}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
           {product.teams.map((team) => (
-            <Link key={team.id} to={`/product/${product.id}/team/${team.id}`} className="flex items-center gap-3 border-2 border-foreground/20 p-3 hover:border-foreground hover:shadow-[3px_3px_0_#0d0d0d] transition-all group">
-              <div className="border-2 border-foreground p-2 text-foreground">
-                <Users className="h-4 w-4" />
+            <Link key={team.id} to={`/product/${product.id}/team/${team.id}`} className="flex items-center gap-2.5 border border-border p-2.5 hover:border-primary/40 transition-all group">
+              <div className="p-1.5 text-primary/50 group-hover:text-primary transition-colors">
+                <Users className="h-3.5 w-3.5" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-bold uppercase truncate">{team.name}</p>
-                <p className="text-[10px] font-mono text-muted-foreground uppercase">VIEW TEAM →</p>
+                <p className="text-[11px] font-mono text-card-foreground truncate">{team.name}</p>
+                <p className="text-[8px] font-mono text-muted-foreground">VIEW →</p>
               </div>
             </Link>
           ))}
         </div>
       </ChartPanel>
 
-      <div className="mt-4">
+      <div className="mt-3">
         <ChartPanel title="Backlog" subtitle="Work items">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
             {[
-              { label: "STORIES", count: 24, color: "border-foreground" },
-              { label: "BUGS", count: 7, color: "border-destructive" },
-              { label: "DEBT", count: 5, color: "border-warning" },
-              { label: "SPIKES", count: 3, color: "border-info" },
-              { label: "BLOCKED", count: 2, color: "border-destructive" },
+              { label: "STORIES", count: 24, color: "border-primary/40" },
+              { label: "BUGS", count: 7, color: "border-destructive/40" },
+              { label: "DEBT", count: 5, color: "border-warning/40" },
+              { label: "SPIKES", count: 3, color: "border-info/40" },
+              { label: "BLOCKED", count: 2, color: "border-destructive/60" },
             ].map((item) => (
-              <div key={item.label} className={`border-2 ${item.color} p-3 text-center`}>
-                <p className="text-3xl font-black font-mono">{item.count}</p>
-                <p className="text-[9px] font-mono font-bold mt-1 tracking-widest">{item.label}</p>
+              <div key={item.label} className={`border ${item.color} p-2.5 text-center bg-secondary/30`}>
+                <p className="text-xl font-mono font-bold text-primary">{item.count}</p>
+                <p className="text-[8px] font-mono text-muted-foreground mt-0.5 tracking-widest">{item.label}</p>
               </div>
             ))}
           </div>

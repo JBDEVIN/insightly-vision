@@ -26,68 +26,76 @@ const teamCapacity = [
   { team: "Analytics", capacity: 70, utilization: 95 },
 ];
 
-const tooltipStyle = {
-  contentStyle: { background: "#fff", border: "2px solid #0d0d0d", borderRadius: "0", fontSize: "11px", fontFamily: "'Space Mono', monospace", boxShadow: "3px 3px 0 #0d0d0d", color: "#0d0d0d" },
-  labelStyle: { color: "#0d0d0d", fontWeight: 700 },
+const tt = {
+  contentStyle: {
+    background: "hsl(220, 18%, 10%)",
+    border: "1px solid hsl(220, 15%, 22%)",
+    borderRadius: "2px",
+    fontSize: "10px",
+    fontFamily: "'JetBrains Mono', monospace",
+    color: "hsl(40, 15%, 80%)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+  },
+  labelStyle: { color: "hsl(35, 100%, 50%)", fontWeight: 600 },
 };
 
-const axisStyle = { fill: "#666", fontSize: 10, fontFamily: "'Space Mono', monospace" };
-const gridColor = "#e0e0e0";
+const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 9, fontFamily: "'JetBrains Mono', monospace" };
+const gc = "hsl(220, 15%, 16%)";
 
 const PortfolioDashboard = () => {
   return (
     <DashboardLayout>
       <PageHeader level="Level 2" title="Portfolio Overview" description="Cross-product engineering metrics and resource allocation" />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         <MetricCard title="Portfolio Velocity" value="91%" trend={{ value: 3.1, label: "vs target" }} icon={<TrendingUp className="h-4 w-4" />} status="success" />
         <MetricCard title="Dependencies" value="14" subtitle="7 resolved this sprint" icon={<Layers className="h-4 w-4" />} status="warning" />
         <MetricCard title="Open PRs" value="38" subtitle="Avg age: 1.4 days" icon={<GitPullRequest className="h-4 w-4" />} status="info" />
         <MetricCard title="Utilization" value="86%" subtitle="Across all teams" icon={<BarChart3 className="h-4 w-4" />} status="success" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 mb-3">
         <ChartPanel title="Health Radar" subtitle="6 dimensions">
-          <ResponsiveContainer width="100%" height={280}>
+          <ResponsiveContainer width="100%" height={260}>
             <RadarChart data={radarData}>
-              <PolarGrid stroke={gridColor} />
-              <PolarAngleAxis dataKey="metric" tick={{ ...axisStyle, fontSize: 10 }} />
-              <PolarRadiusAxis tick={{ ...axisStyle, fontSize: 9 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="#0d0d0d" fill="rgba(13,13,13,0.08)" strokeWidth={2.5} />
+              <PolarGrid stroke={gc} />
+              <PolarAngleAxis dataKey="metric" tick={{ ...ax, fontSize: 9 }} />
+              <PolarRadiusAxis tick={{ ...ax, fontSize: 8 }} domain={[0, 100]} />
+              <Radar name="Score" dataKey="score" stroke="hsl(35, 100%, 50%)" fill="hsl(35, 100%, 50%)" fillOpacity={0.12} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
 
         <ChartPanel title="Capacity vs Utilization" subtitle="Current sprint">
-          <ResponsiveContainer width="100%" height={280}>
+          <ResponsiveContainer width="100%" height={260}>
             <BarChart data={teamCapacity} layout="vertical">
-              <CartesianGrid stroke={gridColor} />
-              <XAxis type="number" domain={[0, 100]} tick={axisStyle} />
-              <YAxis dataKey="team" type="category" tick={axisStyle} width={60} />
-              <Tooltip {...tooltipStyle} />
-              <Bar dataKey="capacity" fill="#ddd" />
-              <Bar dataKey="utilization" fill="#0d0d0d" />
+              <CartesianGrid stroke={gc} strokeDasharray="3 3" />
+              <XAxis type="number" domain={[0, 100]} tick={ax} />
+              <YAxis dataKey="team" type="category" tick={ax} width={55} />
+              <Tooltip {...tt} />
+              <Bar dataKey="capacity" fill="hsl(220, 15%, 22%)" />
+              <Bar dataKey="utilization" fill="hsl(35, 100%, 50%)" fillOpacity={0.8} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
       </div>
 
       <ChartPanel title="Cross-Product Dependencies" subtitle="Active blockers">
-        <div className="space-y-2">
+        <div className="space-y-1">
           {[
             { from: "Mobile App", to: "API Gateway", type: "Blocker", status: "critical" as const, desc: "Auth endpoint v2 migration" },
             { from: "Analytics Engine", to: "Data Pipeline", type: "Dependency", status: "at-risk" as const, desc: "Event schema alignment" },
             { from: "Search Platform", to: "Platform Core", type: "Dependency", status: "at-risk" as const, desc: "Index rebuild API" },
             { from: "Admin Portal", to: "Auth Service", type: "Blocker", status: "on-track" as const, desc: "SSO integration" },
           ].map((dep, i) => (
-            <div key={i} className="flex items-center justify-between border-2 border-foreground/20 px-4 py-3 hover:border-foreground transition-colors">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-xs font-bold uppercase">{dep.from}</span>
-                <span className="text-foreground text-xs font-bold">→</span>
-                <span className="font-mono text-xs font-bold uppercase">{dep.to}</span>
+            <div key={i} className="flex items-center justify-between border border-border px-3 py-2 hover:border-primary/30 transition-colors">
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-[10px] text-card-foreground">{dep.from}</span>
+                <span className="text-primary text-[10px]">→</span>
+                <span className="font-mono text-[10px] text-card-foreground">{dep.to}</span>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="text-[10px] font-mono text-muted-foreground">{dep.desc}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-[9px] font-mono text-muted-foreground">{dep.desc}</span>
                 <StatusBadge status={dep.status} label={dep.type} />
               </div>
             </div>

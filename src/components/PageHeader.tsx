@@ -6,14 +6,14 @@ interface PageHeaderProps {
 
 const PageHeader = ({ level, title, description }: PageHeaderProps) => {
   return (
-    <div className="mb-8">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-foreground bg-foreground/5 border-2 border-foreground px-2 py-0.5">
+    <div className="mb-6">
+      <div className="flex items-center gap-2 mb-1">
+        <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-primary-foreground bg-primary px-1.5 py-0.5">
           {level}
         </span>
       </div>
-      <h1 className="text-3xl font-black text-foreground uppercase tracking-tight">{title}</h1>
-      <p className="text-sm text-muted-foreground mt-1 font-mono">{description}</p>
+      <h1 className="text-xl font-mono font-bold text-card-foreground uppercase tracking-wide">{title}</h1>
+      <p className="text-[10px] text-muted-foreground mt-0.5 font-mono">{description}</p>
     </div>
   );
 };
