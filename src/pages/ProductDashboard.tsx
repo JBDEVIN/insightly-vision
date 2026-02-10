@@ -39,19 +39,19 @@ const burndownData = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(230, 20%, 16%)",
-    border: "1px solid hsl(230, 15%, 25%)",
-    borderRadius: "8px",
+    background: "hsl(38, 35%, 97%)",
+    border: "1px solid hsl(30, 18%, 82%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'DM Mono', monospace",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "hsl(220, 20%, 92%)",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(40,30,20,0.08)",
+    color: "hsl(20, 20%, 18%)",
   },
-  labelStyle: { color: "hsl(220, 20%, 92%)" },
+  labelStyle: { color: "hsl(20, 20%, 18%)" },
 };
 
-const axisStyle = { fill: "hsl(220, 10%, 55%)", fontSize: 11 };
-const gridColor = "hsl(230, 15%, 22%)";
+const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
+const gridColor = "hsl(30, 15%, 86%)";
 
 const ProductDashboard = () => {
   const [selected, setSelected] = useState(0);
@@ -65,10 +65,10 @@ const ProductDashboard = () => {
           <button
             key={p}
             onClick={() => setSelected(i)}
-            className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all duration-200 border backdrop-blur-sm ${
+            className={`rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
               i === selected
-                ? "bg-primary/15 text-primary border-primary/25 shadow-sm shadow-primary/10"
-                : "bg-secondary/40 text-secondary-foreground border-border/40 hover:bg-secondary/60"
+                ? "bg-primary text-primary-foreground"
+                : "bg-secondary text-secondary-foreground hover:bg-accent"
             }`}
           >
             {p}
@@ -91,8 +91,8 @@ const ProductDashboard = () => {
               <XAxis dataKey="day" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="ideal" stroke="hsl(220, 15%, 40%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="hsl(260, 80%, 65%)" strokeWidth={2} dot={{ fill: "hsl(260, 80%, 65%)", r: 3 }} />
+              <Line type="monotone" dataKey="ideal" stroke="hsl(30, 15%, 72%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
+              <Line type="monotone" dataKey="remaining" stroke="hsl(18, 65%, 48%)" strokeWidth={2} dot={{ fill: "hsl(18, 65%, 48%)", r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -104,9 +104,9 @@ const ProductDashboard = () => {
               <XAxis dataKey="sprint" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="completed" fill="hsl(260, 80%, 65%)" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="carryover" fill="hsl(40, 85%, 55%)" radius={[4, 4, 0, 0]} />
-              <Line type="monotone" dataKey="committed" stroke="hsl(200, 75%, 55%)" strokeWidth={1.5} dot={false} />
+              <Bar dataKey="completed" fill="hsl(18, 65%, 48%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="carryover" fill="hsl(38, 75%, 50%)" radius={[3, 3, 0, 0]} />
+              <Line type="monotone" dataKey="committed" stroke="hsl(200, 45%, 45%)" strokeWidth={1.5} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -115,14 +115,14 @@ const ProductDashboard = () => {
       <ChartPanel title="Backlog Composition" subtitle="Current work item breakdown">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
           {[
-            { label: "Stories", count: 24, color: "bg-primary/15 text-primary border-primary/20" },
-            { label: "Bugs", count: 7, color: "bg-destructive/15 text-destructive border-destructive/20" },
-            { label: "Tech Debt", count: 5, color: "bg-warning/15 text-warning border-warning/20" },
-            { label: "Spikes", count: 3, color: "bg-info/15 text-info border-info/20" },
-            { label: "Blocked", count: 2, color: "bg-destructive/15 text-destructive border-destructive/20" },
+            { label: "Stories", count: 24, color: "bg-primary/10 text-primary" },
+            { label: "Bugs", count: 7, color: "bg-destructive/10 text-destructive" },
+            { label: "Tech Debt", count: 5, color: "bg-warning/10 text-warning" },
+            { label: "Spikes", count: 3, color: "bg-info/10 text-info" },
+            { label: "Blocked", count: 2, color: "bg-destructive/10 text-destructive" },
           ].map((item) => (
-            <div key={item.label} className={`rounded-lg border backdrop-blur-sm p-3 text-center ${item.color}`}>
-              <p className="text-2xl font-bold font-mono">{item.count}</p>
+            <div key={item.label} className={`rounded-md border border-border p-3 text-center ${item.color}`}>
+              <p className="text-2xl font-bold font-serif">{item.count}</p>
               <p className="text-[11px] font-medium mt-1">{item.label}</p>
             </div>
           ))}

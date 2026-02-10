@@ -20,18 +20,10 @@ const statusStyles = {
 
 const MetricCard = ({ title, value, subtitle, trend, icon, status = "neutral" }: MetricCardProps) => {
   const TrendIcon =
-    trend && trend.value > 0
-      ? TrendingUp
-      : trend && trend.value < 0
-        ? TrendingDown
-        : Minus;
+    trend && trend.value > 0 ? TrendingUp : trend && trend.value < 0 ? TrendingDown : Minus;
 
   const trendColor =
-    trend && trend.value > 0
-      ? "text-success"
-      : trend && trend.value < 0
-        ? "text-destructive"
-        : "text-muted-foreground";
+    trend && trend.value > 0 ? "text-success" : trend && trend.value < 0 ? "text-destructive" : "text-muted-foreground";
 
   return (
     <div className={`glass-card card-hover border-l-2 ${statusStyles[status]} p-4`}>
@@ -40,7 +32,7 @@ const MetricCard = ({ title, value, subtitle, trend, icon, status = "neutral" }:
           <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
             {title}
           </p>
-          <p className="text-2xl font-bold font-mono metric-glow tracking-tight">
+          <p className="text-2xl font-bold font-serif metric-glow tracking-tight">
             {value}
           </p>
           {subtitle && (
@@ -48,7 +40,7 @@ const MetricCard = ({ title, value, subtitle, trend, icon, status = "neutral" }:
           )}
         </div>
         {icon && (
-          <div className="rounded-lg bg-primary/10 border border-primary/15 p-2 text-primary">
+          <div className="rounded-md bg-primary/8 border border-primary/15 p-2 text-primary">
             {icon}
           </div>
         )}
@@ -57,8 +49,7 @@ const MetricCard = ({ title, value, subtitle, trend, icon, status = "neutral" }:
         <div className={`mt-3 flex items-center gap-1.5 text-xs ${trendColor}`}>
           <TrendIcon className="h-3 w-3" />
           <span className="font-mono font-medium">
-            {trend.value > 0 ? "+" : ""}
-            {trend.value}%
+            {trend.value > 0 ? "+" : ""}{trend.value}%
           </span>
           <span className="text-muted-foreground">{trend.label}</span>
         </div>

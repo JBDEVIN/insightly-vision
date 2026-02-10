@@ -28,19 +28,19 @@ const teamCapacity = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(230, 20%, 16%)",
-    border: "1px solid hsl(230, 15%, 25%)",
-    borderRadius: "8px",
+    background: "hsl(38, 35%, 97%)",
+    border: "1px solid hsl(30, 18%, 82%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'DM Mono', monospace",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "hsl(220, 20%, 92%)",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(40,30,20,0.08)",
+    color: "hsl(20, 20%, 18%)",
   },
-  labelStyle: { color: "hsl(220, 20%, 92%)" },
+  labelStyle: { color: "hsl(20, 20%, 18%)" },
 };
 
-const axisStyle = { fill: "hsl(220, 10%, 55%)", fontSize: 11 };
-const gridColor = "hsl(230, 15%, 22%)";
+const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
+const gridColor = "hsl(30, 15%, 86%)";
 
 const PortfolioDashboard = () => {
   return (
@@ -61,7 +61,7 @@ const PortfolioDashboard = () => {
               <PolarGrid stroke={gridColor} />
               <PolarAngleAxis dataKey="metric" tick={{ ...axisStyle, fontSize: 11 }} />
               <PolarRadiusAxis tick={{ ...axisStyle, fontSize: 10 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="hsl(260, 80%, 65%)" fill="hsl(260, 80%, 65%, 0.15)" strokeWidth={2} />
+              <Radar name="Score" dataKey="score" stroke="hsl(18, 65%, 48%)" fill="hsl(18, 65%, 48%, 0.12)" strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -73,8 +73,8 @@ const PortfolioDashboard = () => {
               <XAxis type="number" domain={[0, 100]} tick={axisStyle} />
               <YAxis dataKey="team" type="category" tick={axisStyle} width={60} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="capacity" fill="hsl(220, 15%, 30%)" radius={[0, 4, 4, 0]} />
-              <Bar dataKey="utilization" fill="hsl(260, 80%, 65%)" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="capacity" fill="hsl(30, 15%, 82%)" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="utilization" fill="hsl(18, 65%, 48%)" radius={[0, 3, 3, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -88,7 +88,7 @@ const PortfolioDashboard = () => {
             { from: "Search Platform", to: "Platform Core", type: "Dependency", status: "at-risk" as const, desc: "Index rebuild API" },
             { from: "Admin Portal", to: "Auth Service", type: "Blocker", status: "on-track" as const, desc: "SSO integration" },
           ].map((dep, i) => (
-            <div key={i} className="flex items-center justify-between rounded-lg bg-secondary/40 backdrop-blur-sm border border-border/40 px-4 py-3">
+            <div key={i} className="flex items-center justify-between rounded-md bg-accent/30 border border-border px-4 py-3">
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs text-primary">{dep.from}</span>
                 <span className="text-muted-foreground text-xs">→</span>

@@ -35,19 +35,19 @@ const dailyFlow = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(230, 20%, 16%)",
-    border: "1px solid hsl(230, 15%, 25%)",
-    borderRadius: "8px",
+    background: "hsl(38, 35%, 97%)",
+    border: "1px solid hsl(30, 18%, 82%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'DM Mono', monospace",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "hsl(220, 20%, 92%)",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(40,30,20,0.08)",
+    color: "hsl(20, 20%, 18%)",
   },
-  labelStyle: { color: "hsl(220, 20%, 92%)" },
+  labelStyle: { color: "hsl(20, 20%, 18%)" },
 };
 
-const axisStyle = { fill: "hsl(220, 10%, 55%)", fontSize: 11 };
-const gridColor = "hsl(230, 15%, 22%)";
+const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
+const gridColor = "hsl(30, 15%, 86%)";
 
 const TeamDashboard = () => {
   return (
@@ -69,7 +69,7 @@ const TeamDashboard = () => {
               <XAxis dataKey="name" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="count" fill="hsl(260, 80%, 65%)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="count" fill="hsl(18, 65%, 48%)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -81,9 +81,9 @@ const TeamDashboard = () => {
               <XAxis dataKey="day" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="inProgress" stackId="a" fill="hsl(200, 75%, 55%)" />
-              <Bar dataKey="inReview" stackId="a" fill="hsl(40, 85%, 55%)" />
-              <Bar dataKey="done" stackId="a" fill="hsl(160, 60%, 50%)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="inProgress" stackId="a" fill="hsl(200, 45%, 45%)" />
+              <Bar dataKey="inReview" stackId="a" fill="hsl(38, 75%, 50%)" />
+              <Bar dataKey="done" stackId="a" fill="hsl(145, 40%, 38%)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -104,10 +104,10 @@ const TeamDashboard = () => {
             </thead>
             <tbody>
               {memberData.map((member) => (
-                <tr key={member.name} className="border-b border-border/40 hover:bg-primary/5 transition-colors">
+                <tr key={member.name} className="border-b border-border/50 hover:bg-accent/30 transition-colors">
                   <td className="py-2.5 px-3">
                     <div className="flex items-center gap-2">
-                      <div className="h-7 w-7 rounded-full bg-gradient-to-br from-primary/30 to-primary/10 border border-primary/20 flex items-center justify-center text-xs font-mono text-primary">
+                      <div className="h-7 w-7 rounded-full bg-primary/10 border border-primary/15 flex items-center justify-center text-xs font-serif font-bold text-primary">
                         {member.name[0]}
                       </div>
                       <span className="font-medium">{member.name}</span>
@@ -125,7 +125,7 @@ const TeamDashboard = () => {
                           className={`h-3 w-3 rounded-sm ${
                             j < Math.floor(member.commits / 4)
                               ? "bg-primary/50"
-                              : "bg-secondary/60"
+                              : "bg-secondary"
                           }`}
                         />
                       ))}

@@ -35,36 +35,31 @@ const deploymentData = [
 ];
 
 const healthDistribution = [
-  { name: "Healthy", value: 6, color: "hsl(160, 60%, 50%)" },
-  { name: "At Risk", value: 3, color: "hsl(40, 85%, 55%)" },
-  { name: "Critical", value: 1, color: "hsl(0, 70%, 55%)" },
+  { name: "Healthy", value: 6, color: "hsl(145, 40%, 38%)" },
+  { name: "At Risk", value: 3, color: "hsl(38, 75%, 50%)" },
+  { name: "Critical", value: 1, color: "hsl(4, 60%, 48%)" },
 ];
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(230, 20%, 16%)",
-    border: "1px solid hsl(230, 15%, 25%)",
-    borderRadius: "8px",
+    background: "hsl(38, 35%, 97%)",
+    border: "1px solid hsl(30, 18%, 82%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'DM Mono', monospace",
-    boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-    color: "hsl(220, 20%, 92%)",
-    backdropFilter: "blur(8px)",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(40,30,20,0.08)",
+    color: "hsl(20, 20%, 18%)",
   },
-  labelStyle: { color: "hsl(220, 20%, 92%)" },
+  labelStyle: { color: "hsl(20, 20%, 18%)" },
 };
 
-const axisStyle = { fill: "hsl(220, 10%, 55%)", fontSize: 11 };
-const gridColor = "hsl(230, 15%, 22%)";
+const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
+const gridColor = "hsl(30, 15%, 86%)";
 
 const ExecutiveDashboard = () => {
   return (
     <DashboardLayout>
-      <PageHeader
-        level="Level 1"
-        title="Executive Overview"
-        description="High-level engineering health across all products and teams"
-      />
+      <PageHeader level="Level 1" title="Executive Overview" description="High-level engineering health across all products and teams" />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <MetricCard title="Delivery Velocity" value="96%" subtitle="Sprint commitment ratio" trend={{ value: 4.2, label: "vs last quarter" }} icon={<Zap className="h-4 w-4" />} status="success" />
@@ -81,8 +76,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="month" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Area type="monotone" dataKey="planned" stroke="hsl(220, 15%, 45%)" fill="hsl(220, 15%, 20%)" strokeWidth={1.5} />
-              <Area type="monotone" dataKey="delivered" stroke="hsl(260, 80%, 65%)" fill="hsl(260, 80%, 65%, 0.12)" strokeWidth={2} />
+              <Area type="monotone" dataKey="planned" stroke="hsl(30, 15%, 70%)" fill="hsl(30, 15%, 92%)" strokeWidth={1.5} />
+              <Area type="monotone" dataKey="delivered" stroke="hsl(18, 65%, 48%)" fill="hsl(18, 65%, 48%, 0.1)" strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -119,8 +114,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="month" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="bugs" stroke="hsl(0, 70%, 55%)" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="resolved" stroke="hsl(160, 60%, 50%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="bugs" stroke="hsl(4, 60%, 48%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="resolved" stroke="hsl(145, 40%, 38%)" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -132,8 +127,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="week" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="deploys" fill="hsl(260, 80%, 65%)" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="failures" fill="hsl(0, 70%, 55%)" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="deploys" fill="hsl(18, 65%, 48%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="failures" fill="hsl(4, 60%, 48%)" radius={[3, 3, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -164,7 +159,7 @@ const ExecutiveDashboard = () => {
                 { name: "Search Platform", status: "at-risk" as const, velocity: "80%", lead: "5.0d", quality: "85" },
                 { name: "Billing System", status: "healthy" as const, velocity: "97%", lead: "2.2d", quality: "95" },
               ].map((project) => (
-                <tr key={project.name} className="border-b border-border/40 hover:bg-primary/5 transition-colors">
+                <tr key={project.name} className="border-b border-border/50 hover:bg-accent/30 transition-colors">
                   <td className="py-2.5 px-3 font-medium">{project.name}</td>
                   <td className="py-2.5 px-3"><StatusBadge status={project.status} /></td>
                   <td className="py-2.5 px-3 text-right font-mono text-xs">{project.velocity}</td>
