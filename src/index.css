@@ -6,51 +6,51 @@
 
 @layer base {
   :root {
-    --background: 220 20% 97%;
-    --foreground: 220 20% 15%;
+    --background: 220 20% 18%;
+    --foreground: 220 10% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 20% 12%;
+    --card: 220 18% 22%;
+    --card-foreground: 220 10% 88%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 12%;
+    --popover: 220 18% 22%;
+    --popover-foreground: 220 10% 88%;
 
-    --primary: 210 85% 45%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 92%;
-    --secondary-foreground: 220 20% 25%;
+    --primary: 210 85% 55%;
+    --primary-foreground: 220 20% 10%;
+    --secondary: 220 14% 28%;
+    --secondary-foreground: 220 10% 80%;
 
-    --muted: 220 14% 93%;
-    --muted-foreground: 220 10% 40%;
+    --muted: 220 14% 25%;
+    --muted-foreground: 220 10% 55%;
 
-    --accent: 220 14% 90%;
-    --accent-foreground: 220 20% 12%;
+    --accent: 220 14% 28%;
+    --accent-foreground: 220 10% 88%;
 
-    --destructive: 0 65% 50%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 160 60% 38%;
+    --success: 160 60% 42%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 42 90% 50%;
-    --warning-foreground: 220 20% 12%;
+    --warning: 42 90% 55%;
+    --warning-foreground: 220 20% 10%;
 
-    --info: 210 70% 50%;
+    --info: 210 70% 55%;
     --info-foreground: 0 0% 100%;
-    --border: 220 14% 85%;
-    --input: 220 14% 82%;
-    --ring: 210 85% 45%;
+    --border: 220 14% 28%;
+    --input: 220 14% 30%;
+    --ring: 210 85% 55%;
 
     --radius: 2px;
 
-    --sidebar-background: 220 20% 95%;
-    --sidebar-foreground: 220 10% 40%;
-    --sidebar-primary: 210 85% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 90%;
-    --sidebar-accent-foreground: 220 20% 12%;
-    --sidebar-border: 220 14% 88%;
-    --sidebar-ring: 210 85% 45%;
+    --sidebar-background: 220 20% 15%;
+    --sidebar-foreground: 220 10% 60%;
+    --sidebar-primary: 210 85% 55%;
+    --sidebar-primary-foreground: 220 20% 10%;
+    --sidebar-accent: 220 14% 25%;
+    --sidebar-accent-foreground: 220 10% 88%;
+    --sidebar-border: 220 14% 24%;
+    --sidebar-ring: 210 85% 55%;
 
     --chart-1: 210 85% 45%;
     --chart-2: 160 60% 38%;
