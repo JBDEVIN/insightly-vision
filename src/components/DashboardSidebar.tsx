@@ -60,7 +60,7 @@ export function DashboardSidebar() {
           </p>
         )}
 
-        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-colors ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
+        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono font-semibold tracking-wide transition-all ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary nav-active-glow" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
           <LayoutDashboard className="h-5 w-5 shrink-0" />
           {!collapsed && <span className="truncate">L1 EXEC</span>}
         </NavLink>
