@@ -29,20 +29,20 @@ export function DashboardSidebar() {
   return (
     <aside
       className={`flex flex-col border-r border-sidebar-border bg-sidebar transition-all duration-150 ${
-        collapsed ? "w-14" : "w-64"
+        collapsed ? "w-14" : "w-72"
       }`}
     >
       {/* Header */}
       <div className="flex items-center gap-2.5 border-b border-sidebar-border px-3 py-3">
         <div className="flex h-7 w-7 shrink-0 items-center justify-center bg-sidebar-primary">
-          <Activity className="h-3.5 w-3.5 text-sidebar-primary-foreground" />
+          <Activity className="h-4 w-4 text-sidebar-primary-foreground" />
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
-            <h1 className="text-base font-bold text-sidebar-primary tracking-wider truncate">
+            <h1 className="text-lg font-bold text-sidebar-primary tracking-wider truncate">
               DEVMETRICS
             </h1>
-            <p className="text-xs text-sidebar-foreground tracking-wider font-mono">
+            <p className="text-sm text-sidebar-foreground tracking-wider font-mono">
               TERMINAL v2.1
             </p>
           </div>
@@ -50,29 +50,29 @@ export function DashboardSidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto p-2 space-y-0.5">
+      <nav className="flex-1 overflow-y-auto p-2 space-y-1">
         {!collapsed && (
-          <p className="text-[11px] font-mono uppercase tracking-[0.25em] text-sidebar-foreground/60 mb-2 px-2">
+          <p className="text-xs font-mono uppercase tracking-[0.25em] text-sidebar-foreground/60 mb-2 px-2">
             ── NAVIGATION ──
           </p>
         )}
 
-        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-1.5 text-sm font-mono tracking-wide transition-colors ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
-          <LayoutDashboard className="h-4 w-4 shrink-0" />
+        <NavLink to="/" end className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isExecActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
+          <LayoutDashboard className="h-5 w-5 shrink-0" />
           {!collapsed && <span className="truncate">L1 EXEC</span>}
         </NavLink>
 
-        <NavLink to="/portfolio" className={`flex items-center gap-2.5 px-2.5 py-1.5 text-sm font-mono tracking-wide transition-colors ${isPortfolioActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
-          <Layers className="h-4 w-4 shrink-0" />
+        <NavLink to="/portfolio" className={`flex items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isPortfolioActive ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`} activeClassName="">
+          <Layers className="h-5 w-5 shrink-0" />
           {!collapsed && <span className="truncate">L2 PORTFOLIO</span>}
         </NavLink>
 
         {!collapsed ? (
           <div>
-            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-1.5 text-sm font-mono tracking-wide transition-colors ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
-              <Box className="h-3.5 w-3.5 shrink-0" />
+            <button onClick={() => setProductsOpen(!productsOpen)} className={`flex w-full items-center gap-2.5 px-2.5 py-2 text-base font-mono tracking-wide transition-colors ${isOnProduct ? "bg-sidebar-primary/15 text-sidebar-primary border-l-2 border-sidebar-primary" : "text-sidebar-foreground hover:text-sidebar-primary border-l-2 border-transparent"}`}>
+              <Box className="h-5 w-5 shrink-0" />
               <span className="flex-1 text-left truncate">L3 PRODUCTS</span>
-              <ChevronDown className={`h-3 w-3 shrink-0 transition-transform ${productsOpen ? "" : "-rotate-90"}`} />
+              <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${productsOpen ? "" : "-rotate-90"}`} />
             </button>
 
             {productsOpen && (
@@ -85,12 +85,12 @@ export function DashboardSidebar() {
                   return (
                     <div key={product.id}>
                       <div className="flex items-center">
-                        <Link to={productPath} className={`flex-1 block px-2 py-1 text-xs font-mono tracking-wide transition-colors truncate ${isProductActive ? "text-sidebar-primary" : "text-sidebar-foreground/70 hover:text-sidebar-primary"}`}>
+                        <Link to={productPath} className={`flex-1 block px-2 py-1 text-sm font-mono tracking-wide transition-colors truncate ${isProductActive ? "text-sidebar-primary" : "text-sidebar-foreground/70 hover:text-sidebar-primary"}`}>
                           {product.name}
                         </Link>
                         {product.teams.length > 0 && (
                           <button onClick={() => setExpandedProduct(isExpanded ? null : product.id)} className="p-0.5 text-sidebar-foreground/40 hover:text-sidebar-primary">
-                            <ChevronRight className={`h-2.5 w-2.5 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
+                            <ChevronRight className={`h-3.5 w-3.5 transition-transform ${isExpanded ? "rotate-90" : ""}`} />
                           </button>
                         )}
                       </div>
@@ -100,8 +100,8 @@ export function DashboardSidebar() {
                             const teamPath = `/product/${product.id}/team/${team.id}`;
                             const isTeamActive = location.pathname === teamPath;
                             return (
-                              <Link key={team.id} to={teamPath} className={`flex items-center gap-1 px-1.5 py-0.5 text-[11px] font-mono tracking-wide transition-colors ${isTeamActive ? "text-sidebar-primary" : "text-sidebar-foreground/50 hover:text-sidebar-primary"}`}>
-                                <Users className="h-2.5 w-2.5 shrink-0" />
+                              <Link key={team.id} to={teamPath} className={`flex items-center gap-1.5 px-1.5 py-1 text-xs font-mono tracking-wide transition-colors ${isTeamActive ? "text-sidebar-primary" : "text-sidebar-foreground/60 hover:text-sidebar-primary"}`}>
+                                <Users className="h-3.5 w-3.5 shrink-0" />
                                 <span className="truncate">{team.name}</span>
                               </Link>
                             );
@@ -123,7 +123,7 @@ export function DashboardSidebar() {
 
       {/* Footer */}
       <div className="border-t border-sidebar-border p-2">
-        <button onClick={() => setCollapsed(!collapsed)} className="flex w-full items-center justify-center gap-1.5 px-2 py-1.5 text-xs font-mono tracking-wider text-sidebar-foreground/50 hover:text-sidebar-primary transition-colors">
+        <button onClick={() => setCollapsed(!collapsed)} className="flex w-full items-center justify-center gap-1.5 px-2 py-1.5 text-sm font-mono tracking-wider text-sidebar-foreground/50 hover:text-sidebar-primary transition-colors">
           <ChevronDown className={`h-3 w-3 transition-transform ${collapsed ? "rotate-[-90deg]" : "rotate-90"}`} />
           {!collapsed && <span>COLLAPSE</span>}
         </button>
