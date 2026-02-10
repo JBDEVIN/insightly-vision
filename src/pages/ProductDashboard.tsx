@@ -3,13 +3,12 @@ import DashboardLayout from "@/components/DashboardLayout";
 import PageHeader from "@/components/PageHeader";
 import MetricCard from "@/components/MetricCard";
 import ChartPanel from "@/components/ChartPanel";
-import StatusBadge from "@/components/StatusBadge";
 import { Bug, Clock, GitBranch, Rocket, Users } from "lucide-react";
 import {
-  AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, LineChart, Line, ComposedChart,
 } from "recharts";
-import { getProduct, products } from "@/data/products";
+import { getProduct } from "@/data/products";
 
 const sprintData = [
   { sprint: "S21", committed: 34, completed: 32, carryover: 2 },
@@ -34,20 +33,12 @@ const burndownData = [
 ];
 
 const tooltipStyle = {
-  contentStyle: {
-    background: "hsl(38, 35%, 97%)",
-    border: "1px solid hsl(30, 18%, 82%)",
-    borderRadius: "6px",
-    fontSize: "12px",
-    fontFamily: "'IBM Plex Mono', monospace",
-    boxShadow: "0 4px 12px rgba(40,30,20,0.08)",
-    color: "hsl(20, 20%, 18%)",
-  },
-  labelStyle: { color: "hsl(20, 20%, 18%)" },
+  contentStyle: { background: "#fff", border: "2px solid #0d0d0d", borderRadius: "0", fontSize: "11px", fontFamily: "'Space Mono', monospace", boxShadow: "3px 3px 0 #0d0d0d", color: "#0d0d0d" },
+  labelStyle: { color: "#0d0d0d", fontWeight: 700 },
 };
 
-const axisStyle = { fill: "hsl(20, 10%, 50%)", fontSize: 11 };
-const gridColor = "hsl(30, 15%, 86%)";
+const axisStyle = { fill: "#666", fontSize: 10, fontFamily: "'Space Mono', monospace" };
+const gridColor = "#e0e0e0";
 
 const ProductDashboard = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -57,7 +48,7 @@ const ProductDashboard = () => {
     return (
       <DashboardLayout>
         <div className="flex items-center justify-center h-64">
-          <p className="text-muted-foreground">Product not found.</p>
+          <p className="font-mono text-muted-foreground uppercase">Product not found.</p>
         </div>
       </DashboardLayout>
     );
@@ -65,29 +56,25 @@ const ProductDashboard = () => {
 
   return (
     <DashboardLayout>
-      <PageHeader
-        level="Level 3"
-        title={product.name}
-        description={`Engineering metrics and sprint health — ${product.teams.length} team${product.teams.length !== 1 ? "s" : ""}`}
-      />
+      <PageHeader level="Level 3" title={product.name} description={`Engineering metrics — ${product.teams.length} team${product.teams.length !== 1 ? "s" : ""}`} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <MetricCard title="Sprint Velocity" value="36 pts" subtitle="Sprint 26 current" trend={{ value: 5.8, label: "vs avg" }} icon={<Rocket className="h-4 w-4" />} status="success" />
-        <MetricCard title="Cycle Time" value="2.8d" subtitle="PR open to merge" trend={{ value: -8, label: "improving" }} icon={<Clock className="h-4 w-4" />} status="success" />
+        <MetricCard title="Sprint Velocity" value="36 pts" subtitle="Sprint 26" trend={{ value: 5.8, label: "vs avg" }} icon={<Rocket className="h-4 w-4" />} status="success" />
+        <MetricCard title="Cycle Time" value="2.8d" subtitle="PR to merge" trend={{ value: -8, label: "improving" }} icon={<Clock className="h-4 w-4" />} status="success" />
         <MetricCard title="Open Defects" value="7" subtitle="2 P1, 5 P2" icon={<Bug className="h-4 w-4" />} status="warning" />
-        <MetricCard title="Deploy Freq" value="4.2/wk" subtitle="Change failure: 2.1%" icon={<GitBranch className="h-4 w-4" />} status="success" />
+        <MetricCard title="Deploy Freq" value="4.2/wk" subtitle="Failure: 2.1%" icon={<GitBranch className="h-4 w-4" />} status="success" />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
-        <ChartPanel title="Sprint Burndown" subtitle="Current sprint progress vs ideal">
+        <ChartPanel title="Sprint Burndown" subtitle="Progress vs ideal">
           <ResponsiveContainer width="100%" height={240}>
             <LineChart data={burndownData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <CartesianGrid stroke={gridColor} />
               <XAxis dataKey="day" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="ideal" stroke="hsl(30, 15%, 72%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="hsl(18, 65%, 48%)" strokeWidth={2} dot={{ fill: "hsl(18, 65%, 48%)", r: 3 }} />
+              <Line type="monotone" dataKey="ideal" stroke="#ccc" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
+              <Line type="monotone" dataKey="remaining" stroke="#0d0d0d" strokeWidth={2.5} dot={{ fill: "#0d0d0d", r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -95,53 +82,47 @@ const ProductDashboard = () => {
         <ChartPanel title="Sprint History" subtitle="Committed vs completed (6 sprints)">
           <ResponsiveContainer width="100%" height={240}>
             <ComposedChart data={sprintData}>
-              <CartesianGrid strokeDasharray="3 3" stroke={gridColor} />
+              <CartesianGrid stroke={gridColor} />
               <XAxis dataKey="sprint" tick={axisStyle} />
               <YAxis tick={axisStyle} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="completed" fill="hsl(18, 65%, 48%)" radius={[3, 3, 0, 0]} />
-              <Bar dataKey="carryover" fill="hsl(38, 75%, 50%)" radius={[3, 3, 0, 0]} />
-              <Line type="monotone" dataKey="committed" stroke="hsl(200, 45%, 45%)" strokeWidth={1.5} dot={false} />
+              <Bar dataKey="completed" fill="#0d0d0d" />
+              <Bar dataKey="carryover" fill="hsl(45, 100%, 45%)" />
+              <Line type="monotone" dataKey="committed" stroke="hsl(0, 85%, 50%)" strokeWidth={2} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>
       </div>
 
-      {/* Teams Overview */}
-      <ChartPanel title="Teams" subtitle={`${product.teams.length} teams in ${product.name}`}>
+      <ChartPanel title="Teams" subtitle={`${product.teams.length} teams`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {product.teams.map((team) => (
-            <Link
-              key={team.id}
-              to={`/product/${product.id}/team/${team.id}`}
-              className="flex items-center gap-3 rounded-md border border-border p-3 hover:bg-accent/30 transition-colors group"
-            >
-              <div className="rounded-md bg-primary/10 border border-primary/15 p-2 text-primary">
+            <Link key={team.id} to={`/product/${product.id}/team/${team.id}`} className="flex items-center gap-3 border-2 border-foreground/20 p-3 hover:border-foreground hover:shadow-[3px_3px_0_#0d0d0d] transition-all group">
+              <div className="border-2 border-foreground p-2 text-foreground">
                 <Users className="h-4 w-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">{team.name}</p>
-                <p className="text-[11px] text-muted-foreground">View team dashboard →</p>
+                <p className="text-sm font-bold uppercase truncate">{team.name}</p>
+                <p className="text-[10px] font-mono text-muted-foreground uppercase">VIEW TEAM →</p>
               </div>
             </Link>
           ))}
         </div>
       </ChartPanel>
 
-      {/* Backlog */}
       <div className="mt-4">
-        <ChartPanel title="Backlog Composition" subtitle="Current work item breakdown">
+        <ChartPanel title="Backlog" subtitle="Work items">
           <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
             {[
-              { label: "Stories", count: 24, color: "bg-primary/10 text-primary" },
-              { label: "Bugs", count: 7, color: "bg-destructive/10 text-destructive" },
-              { label: "Tech Debt", count: 5, color: "bg-warning/10 text-warning" },
-              { label: "Spikes", count: 3, color: "bg-info/10 text-info" },
-              { label: "Blocked", count: 2, color: "bg-destructive/10 text-destructive" },
+              { label: "STORIES", count: 24, color: "border-foreground" },
+              { label: "BUGS", count: 7, color: "border-destructive" },
+              { label: "DEBT", count: 5, color: "border-warning" },
+              { label: "SPIKES", count: 3, color: "border-info" },
+              { label: "BLOCKED", count: 2, color: "border-destructive" },
             ].map((item) => (
-              <div key={item.label} className={`rounded-md border border-border p-3 text-center ${item.color}`}>
-                <p className="text-2xl font-bold font-serif">{item.count}</p>
-                <p className="text-[11px] font-medium mt-1">{item.label}</p>
+              <div key={item.label} className={`border-2 ${item.color} p-3 text-center`}>
+                <p className="text-3xl font-black font-mono">{item.count}</p>
+                <p className="text-[9px] font-mono font-bold mt-1 tracking-widest">{item.label}</p>
               </div>
             ))}
           </div>
