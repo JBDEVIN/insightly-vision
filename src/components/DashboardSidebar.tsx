@@ -59,7 +59,7 @@ export function DashboardSidebar() {
             <h1 className="text-sm font-semibold text-sidebar-accent-foreground truncate">
               DevMetrics
             </h1>
-            <p className="text-[10px] text-muted-foreground font-mono tracking-wide uppercase">
+            <p className="text-[10px] text-sidebar-foreground uppercase tracking-wide">
               KPI Dashboard
             </p>
           </div>

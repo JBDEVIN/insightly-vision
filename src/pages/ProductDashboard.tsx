@@ -39,13 +39,14 @@ const burndownData = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(222, 44%, 8%)",
-    border: "1px solid hsl(222, 30%, 16%)",
-    borderRadius: "8px",
+    background: "#fff",
+    border: "1px solid hsl(220, 14%, 88%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(210, 40%, 92%)" },
+  labelStyle: { color: "hsl(220, 25%, 12%)" },
 };
 
 const ProductDashboard = () => {
@@ -87,12 +88,12 @@ const ProductDashboard = () => {
         <ChartPanel title="Sprint Burndown" subtitle="Current sprint progress vs ideal">
           <ResponsiveContainer width="100%" height={240}>
             <LineChart data={burndownData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="day" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="day" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Line type="monotone" dataKey="ideal" stroke="hsl(222, 30%, 30%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
-              <Line type="monotone" dataKey="remaining" stroke="hsl(187, 80%, 48%)" strokeWidth={2} dot={{ fill: "hsl(187, 80%, 48%)", r: 3 }} />
+              <Line type="monotone" dataKey="ideal" stroke="hsl(220, 14%, 75%)" strokeDasharray="5 5" strokeWidth={1.5} dot={false} />
+              <Line type="monotone" dataKey="remaining" stroke="hsl(215, 60%, 42%)" strokeWidth={2} dot={{ fill: "hsl(215, 60%, 42%)", r: 3 }} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -100,13 +101,13 @@ const ProductDashboard = () => {
         <ChartPanel title="Sprint History" subtitle="Committed vs completed (6 sprints)">
           <ResponsiveContainer width="100%" height={240}>
             <ComposedChart data={sprintData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis dataKey="sprint" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis dataKey="sprint" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="completed" fill="hsl(187, 80%, 48%)" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="carryover" fill="hsl(38, 92%, 50%)" radius={[4, 4, 0, 0]} />
-              <Line type="monotone" dataKey="committed" stroke="hsl(210, 40%, 92%)" strokeWidth={1.5} dot={false} />
+              <Bar dataKey="completed" fill="hsl(215, 60%, 42%)" radius={[3, 3, 0, 0]} />
+              <Bar dataKey="carryover" fill="hsl(38, 80%, 48%)" radius={[3, 3, 0, 0]} />
+              <Line type="monotone" dataKey="committed" stroke="hsl(220, 25%, 12%)" strokeWidth={1.5} dot={false} />
             </ComposedChart>
           </ResponsiveContainer>
         </ChartPanel>

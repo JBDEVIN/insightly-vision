@@ -28,13 +28,14 @@ const teamCapacity = [
 
 const tooltipStyle = {
   contentStyle: {
-    background: "hsl(222, 44%, 8%)",
-    border: "1px solid hsl(222, 30%, 16%)",
-    borderRadius: "8px",
+    background: "#fff",
+    border: "1px solid hsl(220, 14%, 88%)",
+    borderRadius: "6px",
     fontSize: "12px",
-    fontFamily: "'JetBrains Mono', monospace",
+    fontFamily: "'IBM Plex Mono', monospace",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(210, 40%, 92%)" },
+  labelStyle: { color: "hsl(220, 25%, 12%)" },
 };
 
 const PortfolioDashboard = () => {
@@ -57,10 +58,10 @@ const PortfolioDashboard = () => {
         <ChartPanel title="Engineering Health Radar" subtitle="Composite scores across 6 dimensions">
           <ResponsiveContainer width="100%" height={280}>
             <RadarChart data={radarData}>
-              <PolarGrid stroke="hsl(222, 30%, 16%)" />
-              <PolarAngleAxis dataKey="metric" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <PolarRadiusAxis tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 10 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="hsl(187, 80%, 48%)" fill="hsl(187, 80%, 48%, 0.15)" strokeWidth={2} />
+              <PolarGrid stroke="hsl(220, 14%, 88%)" />
+              <PolarAngleAxis dataKey="metric" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <PolarRadiusAxis tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 10 }} domain={[0, 100]} />
+              <Radar name="Score" dataKey="score" stroke="hsl(215, 60%, 42%)" fill="hsl(215, 60%, 42%, 0.12)" strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -68,12 +69,12 @@ const PortfolioDashboard = () => {
         <ChartPanel title="Team Capacity vs Utilization" subtitle="Current sprint allocation">
           <ResponsiveContainer width="100%" height={280}>
             <BarChart data={teamCapacity} layout="vertical">
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(222, 30%, 16%)" />
-              <XAxis type="number" domain={[0, 100]} tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} />
-              <YAxis dataKey="team" type="category" tick={{ fill: "hsl(215, 20%, 55%)", fontSize: 11 }} width={60} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(220, 14%, 88%)" />
+              <XAxis type="number" domain={[0, 100]} tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} />
+              <YAxis dataKey="team" type="category" tick={{ fill: "hsl(220, 10%, 50%)", fontSize: 11 }} width={60} />
               <Tooltip {...tooltipStyle} />
-              <Bar dataKey="capacity" fill="hsl(222, 30%, 25%)" radius={[0, 4, 4, 0]} />
-              <Bar dataKey="utilization" fill="hsl(187, 80%, 48%)" radius={[0, 4, 4, 0]} />
+              <Bar dataKey="capacity" fill="hsl(220, 14%, 85%)" radius={[0, 3, 3, 0]} />
+              <Bar dataKey="utilization" fill="hsl(215, 60%, 42%)" radius={[0, 3, 3, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
