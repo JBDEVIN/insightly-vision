@@ -37,19 +37,19 @@ const dailyFlow = [
 
 const tt = {
   contentStyle: {
-    background: "hsl(220, 18%, 10%)",
-    border: "1px solid hsl(220, 15%, 22%)",
+    background: "hsl(0, 0%, 100%)",
+    border: "1px solid hsl(220, 14%, 85%)",
     borderRadius: "2px",
     fontSize: "14px",
     fontFamily: "'JetBrains Mono', monospace",
-    color: "hsl(40, 15%, 88%)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    color: "hsl(220, 20%, 15%)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(210, 85%, 45%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 12%, 62%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
-const gc = "hsl(220, 15%, 16%)";
+const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
+const gc = "hsl(220, 14%, 90%)";
 
 const TeamDashboard = () => {
   const { productId, teamId } = useParams<{ productId: string; teamId: string }>();
@@ -92,7 +92,7 @@ const TeamDashboard = () => {
               <XAxis dataKey="name" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="count" fill="hsl(200, 80%, 62%)" fillOpacity={0.7} />
+              <Bar dataKey="count" fill="hsl(210, 85%, 45%)" fillOpacity={0.8} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -104,9 +104,9 @@ const TeamDashboard = () => {
               <XAxis dataKey="day" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="inProgress" stackId="a" fill="hsl(210, 60%, 62%)" fillOpacity={0.7} />
-              <Bar dataKey="inReview" stackId="a" fill="hsl(42, 75%, 58%)" fillOpacity={0.6} />
-              <Bar dataKey="done" stackId="a" fill="hsl(160, 50%, 52%)" fillOpacity={0.7} />
+              <Bar dataKey="inProgress" stackId="a" fill="hsl(210, 85%, 45%)" fillOpacity={0.8} />
+              <Bar dataKey="inReview" stackId="a" fill="hsl(42, 90%, 45%)" fillOpacity={0.7} />
+              <Bar dataKey="done" stackId="a" fill="hsl(160, 60%, 38%)" fillOpacity={0.8} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>

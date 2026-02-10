@@ -35,26 +35,26 @@ const deploymentData = [
 ];
 
 const healthDistribution = [
-  { name: "Healthy", value: 6, color: "hsl(160, 50%, 52%)" },
-  { name: "At Risk", value: 3, color: "hsl(42, 75%, 58%)" },
-  { name: "Critical", value: 1, color: "hsl(0, 55%, 55%)" },
+  { name: "Healthy", value: 6, color: "hsl(160, 60%, 38%)" },
+  { name: "At Risk", value: 3, color: "hsl(42, 90%, 45%)" },
+  { name: "Critical", value: 1, color: "hsl(0, 65%, 50%)" },
 ];
 
 const tt = {
   contentStyle: {
-    background: "hsl(220, 18%, 10%)",
-    border: "1px solid hsl(220, 15%, 22%)",
+    background: "hsl(0, 0%, 100%)",
+    border: "1px solid hsl(220, 14%, 85%)",
     borderRadius: "2px",
     fontSize: "14px",
     fontFamily: "'JetBrains Mono', monospace",
-    color: "hsl(40, 15%, 88%)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    color: "hsl(220, 20%, 15%)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(210, 85%, 45%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 12%, 62%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
-const gc = "hsl(220, 15%, 16%)";
+const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
+const gc = "hsl(220, 14%, 90%)";
 
 const ExecutiveDashboard = () => {
   return (
@@ -76,8 +76,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="month" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Area type="monotone" dataKey="planned" stroke="hsl(220, 10%, 35%)" fill="hsl(220, 15%, 14%)" strokeWidth={1} />
-              <Area type="monotone" dataKey="delivered" stroke="hsl(200, 80%, 62%)" fill="hsl(200, 80%, 62%)" fillOpacity={0.1} strokeWidth={2} />
+              <Area type="monotone" dataKey="planned" stroke="hsl(220, 14%, 75%)" fill="hsl(220, 14%, 93%)" strokeWidth={1} />
+              <Area type="monotone" dataKey="delivered" stroke="hsl(210, 85%, 45%)" fill="hsl(210, 85%, 45%)" fillOpacity={0.12} strokeWidth={2} />
             </AreaChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -86,7 +86,7 @@ const ExecutiveDashboard = () => {
           <div className="flex items-center justify-center">
             <ResponsiveContainer width="100%" height={180}>
               <PieChart>
-                <Pie data={healthDistribution} cx="50%" cy="50%" innerRadius={50} outerRadius={72} dataKey="value" strokeWidth={1} stroke="hsl(220, 18%, 10%)">
+                <Pie data={healthDistribution} cx="50%" cy="50%" innerRadius={50} outerRadius={72} dataKey="value" strokeWidth={2} stroke="hsl(0, 0%, 100%)">
                   {healthDistribution.map((entry, i) => (
                     <Cell key={i} fill={entry.color} />
                   ))}
@@ -114,8 +114,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="month" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Line type="monotone" dataKey="bugs" stroke="hsl(42, 75%, 58%)" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="resolved" stroke="hsl(160, 50%, 52%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="bugs" stroke="hsl(42, 90%, 45%)" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="resolved" stroke="hsl(160, 60%, 38%)" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -127,8 +127,8 @@ const ExecutiveDashboard = () => {
               <XAxis dataKey="week" tick={ax} />
               <YAxis tick={ax} />
               <Tooltip {...tt} />
-              <Bar dataKey="deploys" fill="hsl(200, 80%, 62%)" fillOpacity={0.7} />
-              <Bar dataKey="failures" fill="hsl(42, 75%, 58%)" />
+              <Bar dataKey="deploys" fill="hsl(210, 85%, 45%)" fillOpacity={0.8} />
+              <Bar dataKey="failures" fill="hsl(42, 90%, 45%)" />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>

@@ -28,19 +28,19 @@ const teamCapacity = [
 
 const tt = {
   contentStyle: {
-    background: "hsl(220, 18%, 10%)",
-    border: "1px solid hsl(220, 15%, 22%)",
+    background: "hsl(0, 0%, 100%)",
+    border: "1px solid hsl(220, 14%, 85%)",
     borderRadius: "2px",
     fontSize: "14px",
     fontFamily: "'JetBrains Mono', monospace",
-    color: "hsl(40, 15%, 88%)",
-    boxShadow: "0 4px 12px rgba(0,0,0,0.4)",
+    color: "hsl(220, 20%, 15%)",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
   },
-  labelStyle: { color: "hsl(200, 80%, 62%)", fontWeight: 600 },
+  labelStyle: { color: "hsl(210, 85%, 45%)", fontWeight: 600 },
 };
 
-const ax = { fill: "hsl(220, 12%, 62%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
-const gc = "hsl(220, 15%, 16%)";
+const ax = { fill: "hsl(220, 10%, 40%)", fontSize: 13, fontFamily: "'JetBrains Mono', monospace" };
+const gc = "hsl(220, 14%, 90%)";
 
 const PortfolioDashboard = () => {
   return (
@@ -61,7 +61,7 @@ const PortfolioDashboard = () => {
               <PolarGrid stroke={gc} />
               <PolarAngleAxis dataKey="metric" tick={{ ...ax, fontSize: 11 }} />
               <PolarRadiusAxis tick={{ ...ax, fontSize: 10 }} domain={[0, 100]} />
-              <Radar name="Score" dataKey="score" stroke="hsl(200, 80%, 62%)" fill="hsl(200, 80%, 62%)" fillOpacity={0.12} strokeWidth={2} />
+              <Radar name="Score" dataKey="score" stroke="hsl(210, 85%, 45%)" fill="hsl(210, 85%, 45%)" fillOpacity={0.15} strokeWidth={2} />
             </RadarChart>
           </ResponsiveContainer>
         </ChartPanel>
@@ -73,8 +73,8 @@ const PortfolioDashboard = () => {
               <XAxis type="number" domain={[0, 100]} tick={ax} />
               <YAxis dataKey="team" type="category" tick={ax} width={55} />
               <Tooltip {...tt} />
-              <Bar dataKey="capacity" fill="hsl(220, 15%, 22%)" />
-              <Bar dataKey="utilization" fill="hsl(200, 80%, 62%)" fillOpacity={0.8} />
+              <Bar dataKey="capacity" fill="hsl(220, 14%, 82%)" />
+              <Bar dataKey="utilization" fill="hsl(210, 85%, 45%)" fillOpacity={0.8} />
             </BarChart>
           </ResponsiveContainer>
         </ChartPanel>
