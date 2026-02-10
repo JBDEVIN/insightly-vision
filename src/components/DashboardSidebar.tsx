@@ -82,7 +82,7 @@ export function DashboardSidebar() {
                   return (
                     <div key={product.id}>
                       <div className="flex items-center">
-                        <Link to={productPath} className={`flex-1 block px-2 py-1 text-sm font-mono tracking-wide transition-colors truncate ${isProductActive ? "text-sidebar-primary" : "text-sidebar-foreground/70 hover:text-sidebar-primary"}`}>
+                        <Link to={productPath} className={`flex-1 block px-2 py-1 text-sm font-mono font-medium tracking-wide transition-colors truncate ${isProductActive ? "text-sidebar-primary" : "text-sidebar-foreground/80 hover:text-sidebar-primary"}`}>
                           {product.name}
                         </Link>
                         {product.teams.length > 0 && (
