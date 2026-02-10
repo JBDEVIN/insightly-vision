@@ -91,8 +91,9 @@ export function DashboardSidebar() {
                           </button>
                         )}
                       </div>
-                      {isExpanded && (
+                      {isExpanded && product.teams.length > 0 && (
                         <div className="ml-2 space-y-0 border-l border-sidebar-border/50 pl-2">
+                          <p className="text-[10px] font-mono tracking-[0.2em] text-sidebar-foreground/40 px-1.5 py-0.5">L3 TEAMS</p>
                           {product.teams.map((team) => {
                             const teamPath = `/product/${product.id}/team/${team.id}`;
                             const isTeamActive = location.pathname === teamPath;
